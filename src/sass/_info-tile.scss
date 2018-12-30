@@ -1,0 +1,22 @@
+.info-tile {
+  color: $mid-color;
+  margin: 2rem 1rem 1rem;
+
+  &__title {
+    @extend %no-margin;
+    color: $light-color;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  &__description {
+    @extend %no-margin;
+    padding: 1rem 0;
+  }
+
+  &__link {
+    color: $link-color;
+    text-decoration: none;
+  }
+}

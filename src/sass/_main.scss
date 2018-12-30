@@ -1,0 +1,6 @@
+body {
+  @extend %no-margin;
+  background: $primary-color;
+  font-family: $main-font;
+  scroll-behavior: smooth;
+}

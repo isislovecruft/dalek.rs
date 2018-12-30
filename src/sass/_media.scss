@@ -1,0 +1,52 @@
+@media screen and (min-width: 50rem) {
+  .banner {
+    margin: auto;
+    max-width: 80%;
+  }
+
+  .site-header, .site-section__content, .menu {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .site-header {
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .site-section__content {
+    justify-content: space-around;
+
+    &_about {
+      margin: auto;
+      max-width: 70%;
+    }
+  }
+
+  .info-tile {
+    flex-basis: 30%;
+  }
+
+  .nav {
+    top: 0;
+    position: static;
+    width: 80%;
+  }
+
+  .menu {
+    justify-content: flex-end;
+
+    &__item {
+      margin: 0.1rem 0.5rem;
+    }
+
+    &-section {
+      margin: 0.1rem 0;
+      padding: 0;
+    }
+  }
+
+  .toggle_nav {
+    display: none;
+  }
+}

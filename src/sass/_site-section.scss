@@ -1,0 +1,54 @@
+.site-section {
+  color: $light-color;
+  margin: 4rem 0;
+
+  &_about {
+    background: $secondary-color;
+  }
+
+  &__content_about {
+    padding: 1.5rem;
+  }
+
+  &__title {
+    @extend %block;
+    @extend %no-margin;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1rem;
+    text-align: center;
+
+    &_about {
+      margin: auto;
+      padding: 2rem 0 1rem;
+      position: relative;
+      width: 10rem;
+
+      &:before,
+      &:after {
+        bottom: 1.05rem;
+        color: $light-color;
+        position: absolute;
+      }
+
+      &:before {
+        content: ">>>";
+        left: 0;
+      }
+
+      &:after {
+        content: "<<<";
+        right: 0;
+      }
+    }
+  }
+
+  &__p {
+    @extend %no-margin;
+    padding: 0 1rem 1rem;
+  }
+
+  &__header {
+    background: $secondary-color;
+  }
+}

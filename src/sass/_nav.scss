@@ -1,0 +1,101 @@
+.nav {
+  background: $mid-color;
+  left: 0;
+  position: absolute;
+  top: 2.5rem;
+  width: 100%;
+
+  &_hidden {
+    top: -5000px;
+  }
+}
+
+.menu,
+.submenu {
+  @extend %no-margin;
+  @extend %no-padding;
+  list-style-type: none;
+  text-align: center;
+
+  &__link {
+    @extend %block;
+    color: $dark-color;
+    text-decoration: none;
+  }
+}
+
+.menu__item {
+  margin: 1rem;
+}
+
+.menu-section {
+  margin: 1rem 0 0;
+  padding: 0.5rem;
+
+  &__content {
+    @extend %no-margin;
+    @extend %no-padding;
+    border: solid $dark-color 0.1rem;
+    height: 0;
+    list-style-type: none;
+    margin-top: 1rem;
+    overflow: hidden;
+    text-align: center;
+
+    &_hidden {
+      border: none;
+      margin-top: 0;
+      width: 0;
+    }
+  }
+}
+
+.submenu {
+  &__item {
+    padding: 0.4rem;
+  }
+}
+
+.toggle {
+  @extend %no-padding;
+  @extend %no-border;
+  @extend %no-margin;
+  background: $mid-color;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+
+  &_nav {
+    @extend %flex;
+    @extend %flex-column;
+    @extend %flex-center;
+  }
+
+  &__line {
+    background: $dark-color;
+    height: 0.1rem;
+    margin: 0.2rem;
+    width: 1.3rem;
+  }
+}
+
+.menu-subsection {
+  padding: 0.5rem;
+  position: relative;
+
+  &__title {
+    color: $dark-color;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  &:nth-child(2):before {
+    background: $dark-color;
+    content: "";
+    height: 0.1rem;
+    left: 1%;
+    position: absolute;
+    top: 0;
+    width: 98%;
+  }
+}

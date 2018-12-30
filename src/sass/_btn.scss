@@ -1,0 +1,46 @@
+.btn {
+  @extend %no-border;
+  @extend %block;
+  background: $mid-color;
+  box-shadow: $shadow;
+  color: $dark-color;
+  font-weight: 700;
+  margin: 2rem 0.5rem;
+  padding: 0.2rem;
+  text-decoration: none;
+  width: 18rem;
+
+  &:hover {
+    background: lighten($dark-color, 30%);
+    color: $light-color;
+
+    &>.btn__title {
+      color: $light-color;
+    }
+  }
+
+  &_heavy {
+    padding: 1rem;
+  }
+
+  &__title {
+    @extend %block;
+    color: $dark-color;
+    text-align: center;
+    text-decoration: none;
+
+    &::before {
+      content: '<';
+      padding: 1rem;
+    }
+
+    &::after {
+      content: '>';
+      padding: 1rem;
+    }
+  }
+
+  &-list {
+    @extend %no-padding;
+  }
+}

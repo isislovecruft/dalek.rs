@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700"
+    rel="stylesheet">
+  <title>dalek.rs</title>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="site-name">dalek.rs</div>
+    <button class="toggle toggle_nav">
+      <span class="toggle__line"></span>
+      <span class="toggle__line"></span>
+    </button>
+    <nav class="nav nav_hidden">
+      <ul class="menu">
+        <li class="menu__item">
+          <a class="menu__link" href="#home">Home</a>
+        </li>
+        <li class="menu__item"><a class="menu__link" href="#about">About</a></li>
+        <li class="menu__item menu-section">
+          <button class="menu-section__title toggle">Projects</button>
+          <ul class="menu-section__content menu-section__content_hidden">
+            <li class="menu-section__item menu-subsection">
+              <a class="menu-subsection__title" href="#libraries">Libraries</a>
+              <ul class="menu-subsection__content submenu">
+                <li class="submenu__item">
+                  <a class="submenu__link" href="#curve25519-dalek">curve25519-dalek</a>
+                </li>
+                <li class="submenu__item">
+                  <a class="submenu__link" href="#subtle">subtle</a>
+                </li>
+                <li class="submenu__item">
+                  <a class="submenu__link" href="#bulletproofs">bulletproofs</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-section__item menu-subsection">
+              <a class="menu-subsection__title" href="#protocols">Protocols</a>
+              <ul class="menu-subsection__content submenu">
+                <li class="submenu__item">
+                  <a class="submenu__link" href="#ed25519-dalek">ed25519-dalek</a></li>
+                <li class="submenu__item">
+                  <a class="submenu__link" href="#x25519-dalek">x25519-dalek</a>
+                </li>
+                <li class="submenu__item">
+                  <a class="submenu__link" href="#davros">D.A.V.R.O.S.</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="menu__item">
+          <a class="menu__link" href="https://github.com/dalek-cryptography">Github</a>
+        </li>
+        <li class="menu__item">
+          <a class="menu__link" href="https://publicslack.com/slacks/dalek-cryptography/invites/new">Stack/IRC</a>
+        </li>
+        <li class="menu__item">
+          <a class="menu__link" href="#">Mailing Lists</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main class="main">
+    <section class="site-section">
+      <div class="banner">
+        <div class="banner__inner">
+          <pre class="banner__title">
+                                                          _____
+                                                         /░░░░░\
+                                                        /░░░░░░░╠══O
+                                                        ╠═══════╣═════O
+        ██████╗  █████╗ ██╗    ██████╗██╗  ██╗          ◖● ● ● ●◗
+        ██╔══██╗██╔══██╗██║    ██╔═══╝██║ ██╔╝          ◖● ● ● ●◗
+        ██║  ██║███████║██║    ████╗  █████╔╝          ◖ ● ● ● ● ◗
+        ██║  ██║██╔══██║██║    ██╔═╝  ██╔═██╗         ◖ ●  ●  ● ● ◗
+        ██████╔╝██║  ██║██████╗██████╗██║  ██╗       ◖_●___●___●_●_◗
+        ╚═════╝ ╚═╝  ╚═╝╚═════╝╚═════╝╚═╝  ╚═╝       [░░░░░░░░░░░░░░]
+ █████╗██████╗ ██╗   ██╗█████╗ ██████╗ ████╗  █████╗ ██████╗  █████╗ ██████╗ ██╗  ██╗██╗   ██╗
+██╔═══╝██╔══██╗╚██╗ ██╔╝██╔═██╗╚═██╔═╝██╔═██╗██╔═══╝ ██╔══██╗██╔══██╗██╔══██╗██║  ██║╚██╗ ██╔╝
+██║    ██████╔╝ ╚████╔╝ █████╔╝  ██║  ██║ ██║██║ ███╗██████╔╝███████║██████╔╝███████║ ╚████╔╝
+██║    ██╔══██╗  ╚██╔╝  ██╔══╝   ██║  ██║ ██║██║  ██║██╔══██╗██╔══██║██╔═══╝ ██╔══██║  ╚██╔╝
+╚█████╗██║  ██║   ██║   ██║      ██║  ╚████╔╝╚█████╔╝██║  ██║██║  ██║██║     ██║  ██║   ██║
+ ╚════╝╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═╝   ╚═══╝  ╚════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝   ╚═╝
+</pre>
+          <p class="banner__content">A suite of cryptographic libraries
+            and
+            protocol implementations, written in the systems programming
+            language Rust, for creating blazingly-fast, production-quality
+            cryptographic applications.</p>
+          <a href="#libraries" class="btn btn_heavy">
+            <div class="btn__title">Learn more</div>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="site-section" id="libraries">
+      <div class="site-section__header">
+        <h2 class="site-section__title">Cryptographic libraries</h2>
+      </div>
+      <div class="site-section__content">
+        <article class="info-tile" id="curve25519-dalek">
+          <h3 class="info-tile__title">curve25519-dalek</h3>
+          <p class="info-tile__description">
+            A pure-Rust implementation of group operations on
+            <a class="info-tile__link" href="https://doc.dalek.rs/curve25519_dalek/ristretto/">Ristretto</a>
+            and <a class="info-tile__link" href="https://doc.dalek.rs/curve25519_dalek/edwards/">Curve25519</a>,
+            providing a clean and safe mid-level API for use implementing
+            a wide range of ECC-based crypto protocols.</p>
+          <aside class="links">
+            <ul class="btn-list">
+              <li class="btn">
+                <a href="https://doc.dalek.rs/curve25519_dalek/" class="btn__title">API
+                  Documentation</a>
+              </li>
+              <li class="btn"><a href="" class="btn__title">Source Code</a></li>
+              <li class="btn">
+                <a href="" class="btn__title">Implementation Notes</a>
+              </li>
+            </ul>
+          </aside>
+        </article>
+        <article class="info-tile" id="subtle">
+          <h3 class="info-tile__title">subtle</h3>
+          <p class="info-tile__description">A small collection of Rust
+            traits and utility functions for writing constant-time code.</p>
+          <aside class="links">
+            <ul class="btn-list">
+              <li class="btn">
+                <a href="https://doc.dalek.rs/subtle/" class="btn__title">API
+                  Documentation</a>
+              </li>
+              <li class="btn"><a href="" class="btn__title">Source Code</a></li>
+              <li class="btn">
+                <a href="" class="btn__title">Implementation Notes</a>
+              </li>
+            </ul>
+          </aside>
+        </article>
+        <article class="info-tile" id="bulletproofs">
+          <h3 class="info-tile__title">bulletproofs</h3>
+          <p class="info-tile__description">The fastest
+            <a class="info-tile__link" href="https://web.stanford.edu/~buenz/pubs/bulletproofs.pdf">Bulletproofs</a>
+            implementation ever, featuring single and aggregated range
+            proofs, strongly-typed online multiparty computation for proof
+            aggregation, and a programmable constraint system API for
+            proving arbitrary statements.</p>
+          <aside class="links">
+            <ul class="btn-list">
+              <li class="btn">
+                <a href="" class="btn__title">API Documentation</a>
+              </li>
+              <li class="btn"><a href="" class="btn__title">Source Code</a></li>
+              <li class="btn">
+                <a href="" class="btn__title">Implementation Notes</a>
+              </li>
+            </ul>
+          </aside>
+        </article>
+      </div>
+    </section>
+    <section class="site-section">
+      <div class="site-section__header">
+        <h2 class="site-section__title">
+          Cryptographic protocol implementations
+        </h2>
+      </div>
+      <div class="site-section__content">
+        <article class="info-tile" id="ed25519-dalek">
+          <h3 class="info-tile__title">ed25519-dalek</h3>
+          <p class="info-tile__description">A memory-safe, fast, and
+            efficient ed25519 signing and signature verification
+            implementation which supports a well-designed API and friendly
+            error management.</p>
+          <aside class="links">
+            <ul class="btn-list">
+              <li class="btn">
+                <a href="" class="btn__title">API Documentation</a>
+              </li>
+              <li class="btn"><a href="" class="btn__title">Source Code</a></li>
+              <li class="btn">
+                <a href="" class="btn__title">Implementation Notes</a>
+              </li>
+            </ul>
+          </aside>
+        </article>
+        <article class="info-tile" id="x25519-dalek">
+          <h3 class="info-tile__title">x25519-dalek</h3>
+          <p class="info-tile__description">Elliptic curve Diffie-Hellman
+            key exchange, made so simple-to-use you'll wonder why your
+            application wasn't using it already. Now with
+            <a class="info-tile__link" href="https://docs.rs/x25519-dalek/0.1.0/x25519_dalek/index.html#examples">
+              adorable kittens
+            </a>!
+          </p>
+          <aside class="links">
+            <ul class="btn-list">
+              <li class="btn">
+                <a href="" class="btn__title">API Documentation</a>
+              </li>
+              <li class="btn"><a href="" class="btn__title">Source Code</a></li>
+              <li class="btn">
+                <a href="" class="btn__title">Implementation Notes</a>
+              </li>
+            </ul>
+          </aside>
+        </article>
+        <article class="info-tile" id="davros">
+          <h3 class="info-tile__title">D.A.V.R.O.S.</h3>
+          <p class="info-tile__description">D.A.V.R.O.S. (Deterministic
+            And Verifiable Randomness On Schnorr signatures) is a
+            work-in-progress implementation of Schnorr signatures and VRFs
+            using <a class="info-tile__link" href="https://doc.dalek.rs/curve25519_dalek/ristretto/">Ristretto</a>,
+            to be released soon.</p>
+          <aside class="links">
+            <ul class="btn-list">
+              <li class="btn">
+                <a href="" class="btn__title">API Documentation</a>
+              </li>
+              <li class="btn"><a href="" class="btn__title">Source Code</a></li>
+              <li class="btn">
+                <a href="" class="btn__title">Implementation Notes</a>
+              </li>
+            </ul>
+          </aside>
+        </article>
+      </div>
+    </section>
+    <section class="site-section site-section_about" id="about">
+      <h2 class="site-section__title site-section__title_about">About</h2>
+      <div class="site-section__content site-section__content_about">
+        <p class="site-section__p">dalek-cryptography is a collection of
+          libraries providing safe, mid-level APIs for cryptographic
+          primitives, aimed at making it faster and easier to implement
+          cryptographic protocols such as key agreement, signatures,
+          anonymous credentials, range proofs, and zero-knowledge proof
+          systems.</p>
+        <p class="site-section__p">Other libraries aim to provide
+          well-designed APIs for protocol
+          users, but do not aim to provide well-designed API for protocol
+          implementers. The result is that implementing new protocols
+          often requires using unsafe internal APIs which were never
+          intended for reuse.</p>
+        <p class="site-section__p">Our goal is to provide both safe,
+          mid-level APIs aimed at
+          implementors of cryptographic protocols, as well as
+          implementations providing safe, high-level APIs aimed at users
+          of cryptographic protocols.</p>
+        <p class="site-section__p">We hope to stabilise these libraries to
+          production-quality
+          versions soon, but—for now—they should be used for research.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    &copy; 2017-2018 The Dalek Cryptography Developers — inspired by the
+    excellent BOOTSTRA.386 theme by Chris McKenzie</footer>
+</body>
+
+</html>
