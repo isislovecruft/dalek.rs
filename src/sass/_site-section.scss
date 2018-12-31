@@ -1,13 +1,10 @@
 .site-section {
   color: $light-color;
-  margin: 4rem 0;
-
-  &_about {
-    background: $secondary-color;
-  }
+  padding: 5vh 0 0;
 
   &__content_about {
-    padding: 1.5rem;
+    background: $secondary-color;
+    padding: 0.5rem;
   }
 
   &__title {
@@ -45,7 +42,7 @@
 
   &__p {
     @extend %no-margin;
-    padding: 0 1rem 1rem;
+    padding: 1rem;
   }
 
   &__header {

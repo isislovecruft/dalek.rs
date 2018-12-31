@@ -2,7 +2,7 @@
   background: $secondary-color;
   color: $light-color;
   margin: 1rem;
-  min-height: calc(100vh - 10rem);
+  min-height: calc(85vh - 2rem);
   padding: 0.4rem;
 
   &__inner {
@@ -10,20 +10,17 @@
     @extend %flex-center;
     border: double 0.25rem $light-color;
     flex-flow: column;
-    min-height: calc(100vh - 10.4rem);
-  }
-
-  &__title,
-  &__content {
-    padding: 1rem;
+    min-height: calc(85vh - 2.4rem);
   }
 
   &__title {
-    //display: none;
+    padding: 1rem;
+    display: none;
     font-weight: 700;
   }
 
   &__content {
+    padding: 0 1rem;
     max-width: 52rem;
   }
 }

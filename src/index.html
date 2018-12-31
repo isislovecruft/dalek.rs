@@ -14,19 +14,19 @@
 <body>
   <header class="site-header">
     <div class="site-name">dalek.rs</div>
-    <button class="toggle toggle_nav">
+    <button class="toggle toggle_nav" id="toggle-nav">
       <span class="toggle__line"></span>
       <span class="toggle__line"></span>
     </button>
-    <nav class="nav nav_hidden">
+    <nav class="nav nav_hidden" id="nav">
       <ul class="menu">
         <li class="menu__item">
           <a class="menu__link" href="#home">Home</a>
         </li>
         <li class="menu__item"><a class="menu__link" href="#about">About</a></li>
         <li class="menu__item menu-section">
-          <button class="menu-section__title toggle">Projects</button>
-          <ul class="menu-section__content menu-section__content_hidden">
+          <button class="menu-section__title toggle" id="projects-menu-toggle">Projects</button>
+          <ul class="menu-section__content menu-section__content_hidden" id="projects-menu">
             <li class="menu-section__item menu-subsection">
               <a class="menu-subsection__title" href="#libraries">Libraries</a>
               <ul class="menu-subsection__content submenu">
@@ -69,7 +69,7 @@
     </nav>
   </header>
   <main class="main">
-    <section class="site-section">
+    <section class="site-section" id="home">
       <div class="banner">
         <div class="banner__inner">
           <pre class="banner__title">
@@ -96,7 +96,7 @@
             language Rust, for creating blazingly-fast, production-quality
             cryptographic applications.</p>
           <a href="#libraries" class="btn btn_heavy">
-            <div class="btn__title">Learn more</div>
+            <div class="btn__title btn__title_heavy">Learn more</div>
           </a>
         </div>
       </div>
@@ -166,7 +166,7 @@
         </article>
       </div>
     </section>
-    <section class="site-section">
+    <section class="site-section" id="protocols">
       <div class="site-section__header">
         <h2 class="site-section__title">
           Cryptographic protocol implementations
@@ -262,6 +262,7 @@
   <footer class="site-footer">
     &copy; 2017-2018 The Dalek Cryptography Developers — inspired by the
     excellent BOOTSTRA.386 theme by Chris McKenzie</footer>
+    <script type="text/javascript" src="js/main.js"></script>
 </body>
 
 </html>

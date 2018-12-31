@@ -90,7 +90,7 @@ rules:
     - 1
     - convention: hyphenatedbem
   property-sort-order:
-    - 1
+    - 0
     - ignore-custom-properties: false
   property-units:
     - 1

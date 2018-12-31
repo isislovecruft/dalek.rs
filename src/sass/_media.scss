@@ -1,25 +1,34 @@
 @media screen and (min-width: 50rem) {
   .banner {
-    margin: auto;
+    margin: 1rem auto;
     max-width: 80%;
+
+    &__title {
+      display: block;
+    }
   }
 
-  .site-header, .site-section__content, .menu {
+  .site-header,
+  .site-section__content,
+  .menu {
     display: flex;
     flex-flow: row wrap;
   }
 
   .site-header {
-    justify-content: space-around;
     align-items: center;
+    justify-content: space-around;
+    padding: 0 0.5rem;
   }
 
-  .site-section__content {
-    justify-content: space-around;
+  .site-section {
+    &__content {
+      justify-content: space-around;
 
-    &_about {
-      margin: auto;
-      max-width: 70%;
+      &_about {
+        padding: 0.5rem 15%;
+        max-width: 70%;
+      }
     }
   }
 
@@ -28,8 +37,9 @@
   }
 
   .nav {
-    top: 0;
     position: static;
+    border-top: 0;
+    top: 0;
     width: 80%;
   }
 
@@ -37,16 +47,32 @@
     justify-content: flex-end;
 
     &__item {
-      margin: 0.1rem 0.5rem;
+      margin: 0;
+      padding: 0.3rem 0.5rem;
     }
 
     &-section {
-      margin: 0.1rem 0;
-      padding: 0;
+      padding: 0.3rem;
+
+      &__content {
+        position: absolute;
+        background: $mid-color;
+        height: 16.5rem;
+
+        &_hidden {
+          border: 0;
+          margin-top: 0;
+          height: 0;
+        }
+      }
     }
   }
 
   .toggle_nav {
     display: none;
+  }
+
+  .site-name {
+    padding: 0;
   }
 }
