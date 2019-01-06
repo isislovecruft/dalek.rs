@@ -12,10 +12,10 @@
 
   &:hover {
     background: lighten($dark-color, 30%);
-    color: $light-color;
+    color: $text-color;
 
     & > .btn__title {
-      color: $light-color;
+      color: $text-color;
     }
   }
 

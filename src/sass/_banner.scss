@@ -1,6 +1,6 @@
 .banner {
   background: $secondary-color;
-  color: $light-color;
+  color: $text-color;
   margin: 1rem;
   min-height: calc(85vh - 2rem);
   padding: 0.4rem;
@@ -8,7 +8,7 @@
   &__inner {
     @extend %flex;
     @extend %flex-center;
-    border: double 0.25rem $light-color;
+    border: double 0.25rem $text-color;
     flex-flow: column;
     min-height: calc(85vh - 2.4rem);
   }
@@ -22,5 +22,9 @@
   &__content {
     padding: 0 1rem;
     max-width: 52rem;
+  }
+
+  &__p {
+    background: $secondary-color;
   }
 }

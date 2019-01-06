@@ -1,5 +1,5 @@
 .site-section {
-  color: $light-color;
+  color: $text-color;
   padding: 5vh 0 0;
 
   &__content_about {
@@ -12,31 +12,33 @@
     @extend %no-margin;
     font-size: 1.2rem;
     font-weight: 700;
-    padding: 1rem;
+    margin: auto;
+    padding: 1rem 2rem;
+    position: relative;
     text-align: center;
+    text-transform: uppercase;
+    max-width: 32rem;
+
+    &:before,
+    &:after {
+      bottom: 1.05rem;
+      color: $text-color;
+      position: absolute;
+    }
+
+    &:before {
+      content: ">>>";
+      left: 0;
+    }
+
+    &:after {
+      content: "<<<";
+      right: 0;
+    }
 
     &_about {
-      margin: auto;
       padding: 2rem 0 1rem;
-      position: relative;
       width: 10rem;
-
-      &:before,
-      &:after {
-        bottom: 1.05rem;
-        color: $light-color;
-        position: absolute;
-      }
-
-      &:before {
-        content: ">>>";
-        left: 0;
-      }
-
-      &:after {
-        content: "<<<";
-        right: 0;
-      }
     }
   }
 
