@@ -18,5 +18,9 @@
   &__link {
     color: $link-color;
     text-decoration: none;
+
+    &:hover {
+      background: $link-hover-color;
+    }
   }
 }

@@ -58,6 +58,6 @@
   }
 
   &-list {
-    @extend %no-padding;
+    padding: 0;
   }
 }

@@ -6,12 +6,13 @@
   const toggleProjects = doc.getElementById("projects-menu-toggle");
   const projectsMenu = doc.getElementById("projects-menu");
 
-  const openOnClick = (target, elem, classes) => {
+  //Togles classes of `elem`, after clicking on `target`
+  const toggleOnClick = (target, elem, classes) => {
     target.addEventListener("click", () => elem.classList.toggle(classes));
   };
 
-  openOnClick(toggleNav, nav, "nav_hidden");
-  openOnClick(toggleProjects, projectsMenu, "menu-section__content_hidden");
+  toggleOnClick(toggleNav, nav, "nav_hidden");
+  toggleOnClick(toggleProjects, projectsMenu, "menu-section__content_hidden");
 
   nav.addEventListener("click", e => {
     if (e.target != toggleNav && e.target != toggleProjects) {

@@ -1,5 +1,5 @@
 .nav {
-  transition: all 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   background: $mid-color;
   left: 0;
   position: absolute;
@@ -8,14 +8,13 @@
   width: 100%;
 
   &_hidden {
-    top: -1000px;
+    transform: translateY(-1000px);
   }
 }
 
 .menu,
 .submenu {
-  @extend %no-margin;
-  @extend %no-padding;
+  @extend %no-margin-padding;
   list-style-type: none;
   text-align: center;
 
@@ -35,12 +34,11 @@
   padding: 0.5rem;
 
   &__content {
-    @extend %no-margin;
-    @extend %no-padding;
+    @extend %no-margin-padding;
     border: solid $dark-color 0.1rem;
     transition: all 0.2s ease-in-out;
     list-style-type: none;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     overflow: hidden;
     text-align: center;
     height: 100%;
@@ -56,20 +54,26 @@
 .submenu {
   &__item {
     padding: 0.4rem;
+
+    &:hover {
+      background: $link-hover-color;
+
+      & > .submenu__link {
+        color: $mid-color;
+      }
+    }
   }
 }
 
 .toggle {
-  @extend %no-padding;
+  @extend %no-margin-padding;
   @extend %no-border;
-  @extend %no-margin;
   background: $mid-color;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 700;
 
   &_nav {
-    @extend %flex;
     @extend %flex-column;
     @extend %flex-center;
   }
@@ -83,7 +87,7 @@
 }
 
 .menu-subsection {
-  padding: 0.5rem 0.5rem 0;
+  padding: 0.5rem;
   position: relative;
 
   &__title {

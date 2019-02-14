@@ -38,8 +38,8 @@
 
   .nav {
     position: static;
+    transform: translateY(0);
     border-top: 0;
-    top: 0;
     width: 80%;
   }
 
@@ -57,7 +57,7 @@
       &__content {
         position: absolute;
         background: $mid-color;
-        height: 16.5rem;
+        height: 17rem;
 
         &_hidden {
           border: 0;
