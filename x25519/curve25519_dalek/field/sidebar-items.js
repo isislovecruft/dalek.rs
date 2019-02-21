@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["FieldElement64","A `FieldElement64` represents an element of the field GF(2^255 - 19)."]],"type":[["FieldElement","A `FieldElement` represents an element of the field GF(2^255 - 19)."],["Limb","In the 64-bit implementation, field elements are represented in radix 2^51 as five `u64`s."]]});

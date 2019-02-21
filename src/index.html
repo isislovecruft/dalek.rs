@@ -8,30 +8,30 @@
   <meta name="description" content="A suite of cryptographic libraries and protocol implementations,
   written in the systems programming language Rust, for creating blazingly-fast, production-quality
   cryptographic applications.">
-  <link rel="stylesheet" href="css/main.css">
   <title>dalek cryptography</title>
+  <link rel="stylesheet" href="main.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700"
     rel="stylesheet">
   <link rel="shortcut icon" href="dalek-emoji.png">
 </head>
 
 <body>
-  <header class="site-header">
+  <header class="site-header" id="site-header">
     <div class="site-name">dalek.rs</div>
-    <button class="toggle toggle_nav" id="toggle-nav" aria-label="Open menu">
+    <button class="toggle toggle_nav" aria-label="Open menu"
+      data-toggle-query="nav">
       <span class="toggle__line"></span>
       <span class="toggle__line"></span>
     </button>
-    <nav class="nav nav_hidden" id="nav">
+    <nav class="nav nav_hidden">
       <ul class="menu">
         <li class="menu__item">
           <a class="menu__link" href="#home">Home</a>
         </li>
         <li class="menu__item"><a class="menu__link" href="#about">About</a></li>
         <li class="menu__item menu-section">
-          <button class="menu-section__title toggle" id="projects-menu-toggle">Projects</button>
-          <ul class="menu-section__content menu-section__content_hidden"
-            id="projects-menu">
+          <button class="menu-section__title toggle" data-toggle-query="menu-section__content">Projects</button>
+          <ul class="menu-section__content menu-section__content_hidden">
             <li class="menu-section__item menu-subsection">
               <a class="menu-subsection__title" href="#libraries">Libraries</a>
               <ul class="menu-subsection__content submenu">
@@ -284,7 +284,7 @@
   <footer class="site-footer">
     &copy; 2017-2018 The Dalek Cryptography Developers — inspired by the
     excellent BOOTSTRA.386 theme by Chris McKenzie</footer>
-  <script type="text/javascript" src="js/main.js"></script>
+  <script src="main.min.js"></script>
 </body>
 
 </html>

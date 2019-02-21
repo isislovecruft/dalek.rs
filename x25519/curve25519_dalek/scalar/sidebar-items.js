@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Scalar","The `Scalar` struct represents an element in ℤ/lℤ, where"]]});
