@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `x25519_dalek` crate.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, x25519_dalek">
+
+    <title>x25519_dalek - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc mod">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Crate x25519_dalek</p><div class="block items"><ul><li><a href="#functions">Functions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'x25519_dalek', ty: 'mod', relpath: '../'};</script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Crate <a class="mod" href=''>x25519_dalek</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/x25519_dalek/lib.rs.html#10-140' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>x25519 Diffie-Hellman key exchange</p>
+
+<p>A pure-Rust implementation of x25519 elliptic curve Diffie-Hellman key
+exchange as specified by Mike Hamburg and Adam Langley in
+<a href="https://tools.ietf.org/html/rfc7748">RFC7748</a>.</p>
+
+<h1 id='examples' class='section-header'><a href='#examples'>Examples</a></h1>
+<p><a href="https://shop.bubblesort.io"><img src="https://raw.githubusercontent.com/isislovecruft/x25519-dalek/master/res/bubblesort-zines-secret-messages-cover.jpeg" alt=""></a></p>
+
+<p>&quot;Secret Messages&quot; cover image and <a href="https://shop.bubblesort.io/products/secret-messages-zine">zine</a>
+copyright © Amy Wibowo (<a href="https://twitter.com/sailorhg">@sailorhg</a>)</p>
+
+<p>Alice and Bob are two adorable kittens who have lost their mittens, and they
+wish to be able to send secret messages to each other to coordinate finding
+them, otherwise—if their caretaker cat finds out—they will surely be called
+naughty kittens and be given no pie!</p>
+
+<p>But the two kittens are quite clever.  Even though their paws are still too
+big and the rest of them is 90% fuzziness, these clever kittens have been
+studying up on modern public key cryptography and have learned a nifty trick
+called <em>elliptic curve Diffie-Hellman key exchange</em>.  With the right
+incantations, the kittens will be able to secretly organise to find their
+mittens, and then spend the rest of the afternoon nomming some yummy pie!</p>
+
+<p>First, Alice uses <code>x25519_dalek::generate_secret()</code> and
+<code>x25519_dalek::generate_public()</code> to produce her secret and public keys:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">x25519_dalek</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">rand</span>;
+
+<span class="kw">use</span> <span class="ident">x25519_dalek</span>::<span class="ident">generate_secret</span>;
+<span class="kw">use</span> <span class="ident">x25519_dalek</span>::<span class="ident">generate_public</span>;
+<span class="kw">use</span> <span class="ident">rand</span>::<span class="ident">OsRng</span>;
+
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">alice_csprng</span> <span class="op">=</span> <span class="ident">OsRng</span>::<span class="ident">new</span>().<span class="ident">unwrap</span>();
+<span class="kw">let</span>     <span class="ident">alice_secret</span> <span class="op">=</span> <span class="ident">generate_secret</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">alice_csprng</span>);
+<span class="kw">let</span>     <span class="ident">alice_public</span> <span class="op">=</span> <span class="ident">generate_public</span>(<span class="kw-2">&amp;</span><span class="ident">alice_secret</span>);</pre>
+
+<p>Bob does the same:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">bob_csprng</span> <span class="op">=</span> <span class="ident">OsRng</span>::<span class="ident">new</span>().<span class="ident">unwrap</span>();
+<span class="kw">let</span>     <span class="ident">bob_secret</span> <span class="op">=</span> <span class="ident">generate_secret</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">bob_csprng</span>);
+<span class="kw">let</span>     <span class="ident">bob_public</span> <span class="op">=</span> <span class="ident">generate_public</span>(<span class="kw-2">&amp;</span><span class="ident">bob_secret</span>);</pre>
+
+<p>Alice meows across the room, telling <code>alice_public</code> to Bob, and Bob
+loudly meows <code>bob_public</code> back to Alice.  Alice now computes her
+shared secret with Bob by doing:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="kw">use</span> <span class="ident">x25519_dalek</span>::<span class="ident">diffie_hellman</span>;
+
+<span class="kw">let</span> <span class="ident">shared_secret</span> <span class="op">=</span> <span class="ident">diffie_hellman</span>(<span class="kw-2">&amp;</span><span class="ident">alice_secret</span>, <span class="kw-2">&amp;</span><span class="ident">bob_public</span>.<span class="ident">as_bytes</span>());</pre>
+
+<p>Similarly, Bob computes the same shared secret by doing:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="kw">let</span> <span class="ident">shared_secret</span> <span class="op">=</span> <span class="ident">diffie_hellman</span>(<span class="kw-2">&amp;</span><span class="ident">bob_secret</span>, <span class="kw-2">&amp;</span><span class="ident">alice_public</span>.<span class="ident">as_bytes</span>());</pre>
+
+<p>Voilá!  Alice and Bob can now use their shared secret to encrypt their
+meows, for example, by using it to generate a key and nonce for an
+authenticated-encryption cipher.</p>
+</div><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.diffie_hellman.html"
+                                  title='fn x25519_dalek::diffie_hellman'>diffie_hellman</a></td>
+                           <td class='docblock-short'>
+                                <p>Utility function to make it easier to call <code>x25519()</code> with byte arrays as
+inputs and outputs.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.generate_public.html"
+                                  title='fn x25519_dalek::generate_public'>generate_public</a></td>
+                           <td class='docblock-short'>
+                                <p>Given an x25519 secret key, compute its corresponding public key.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.generate_secret.html"
+                                  title='fn x25519_dalek::generate_secret'>generate_secret</a></td>
+                           <td class='docblock-short'>
+                                <p>Generate an x25519 secret key.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.x25519.html"
+                                  title='fn x25519_dalek::x25519'>x25519</a></td>
+                           <td class='docblock-short'>
+                                <p>The x25519 function, as specified in RFC7748.</p>
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "x25519_dalek";
+    </script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

@@ -20,6 +20,10 @@ const paths = {
   html: {
     src: "src/*.html",
     dest: "dist"
+  },
+  img: {
+    src: "src/*.png",
+    dest: "dist"
   }
 };
 
@@ -55,12 +59,20 @@ export function html() {
     .pipe(gulp.dest(paths.html.dest));
 }
 
+export function img() {
+  return gulp
+    .src(paths.img.src)
+    .pipe(gulp.dest(paths.img.dest));
+}
+
 function watchFiles() {
   gulp.watch(paths.scripts.src, scripts);
   gulp.watch(paths.styles.src, styles);
+  gulp.watch(paths.html.src, styles);
+  gulp.watch(paths.img.src, styles);
 }
 
 export {watchFiles as watch};
 
-const build = gulp.series(clean, gulp.parallel(styles, scripts, html));
+const build = gulp.series(clean, gulp.parallel(styles, scripts, html, img));
 export default build;

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `montgomery` mod in crate `curve25519_dalek`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, montgomery">
+
+    <title>curve25519_dalek::montgomery - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc mod">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Module montgomery</p><div class="block items"><ul><li><a href="#structs">Structs</a></li></ul></div><p class='location'><a href='../index.html'>curve25519_dalek</a></p><script>window.sidebarCurrent = {name: 'montgomery', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>curve25519_dalek</a>::<wbr><a class="mod" href=''>montgomery</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#11-594' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Montgomery arithmetic.</p>
+
+<p>Apart from the compressed point implementation
+(i.e. <code>CompressedMontgomeryU</code>), this module is a &quot;clean room&quot; implementation
+of the Montgomery arithmetic described in the following papers:</p>
+
+<ul>
+<li><p>Costello, Craig, and Benjamin Smith. &quot;Montgomery curves and their
+arithmetic.&quot; Journal of Cryptographic Engineering (2017): 1-14.
+<a href="http://eprint.iacr.org/2017/212.pdf">PDF</a></p></li>
+<li><p>Montgomery, Peter L. &quot;Speeding the Pollard and elliptic curve methods of
+factorization.&quot; Mathematics of computation 48.177 (1987): 243-264.
+<a href="http://www.ams.org/mcom/1987-48-177/S0025-5718-1987-0866113-7/">PDF</a></p></li>
+</ul>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.CompressedMontgomeryU.html"
+                                  title='struct curve25519_dalek::montgomery::CompressedMontgomeryU'>CompressedMontgomeryU</a></td>
+                           <td class='docblock-short'>
+                                <p>In &quot;Montgomery u&quot; format, as used in X25519, a point <code>(u,v)</code> on
+the Montgomery curve</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.MontgomeryPoint.html"
+                                  title='struct curve25519_dalek::montgomery::MontgomeryPoint'>MontgomeryPoint</a></td>
+                           <td class='docblock-short'>
+                                <p>A point on the Montgomery form of the curve, in projective 𝗣<sup>2</sup> coordinates.</p>
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "curve25519_dalek";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

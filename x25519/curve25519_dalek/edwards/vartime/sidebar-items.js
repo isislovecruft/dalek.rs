@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["double_scalar_mult_basepoint","Given a point `A` and scalars `a` and `b`, compute the point `aA+bB`, where `B` is the Ed25519 basepoint (i.e., `B = (x,4/5)` with x positive)."],["multiscalar_mult","Given a vector of public scalars and a vector of (possibly secret) points, compute `c_1 P_1 + ... + c_n P_n`."]]});

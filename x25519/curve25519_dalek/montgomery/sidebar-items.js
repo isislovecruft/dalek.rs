@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["CompressedMontgomeryU","In \"Montgomery u\" format, as used in X25519, a point `(u,v)` on the Montgomery curve"],["MontgomeryPoint","A point on the Montgomery form of the curve, in projective 𝗣^2 coordinates."]]});

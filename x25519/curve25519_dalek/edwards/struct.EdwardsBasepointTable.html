@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `EdwardsBasepointTable` struct in crate `curve25519_dalek`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, EdwardsBasepointTable">
+
+    <title>curve25519_dalek::edwards::EdwardsBasepointTable - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Struct EdwardsBasepointTable</p><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.create">create</a><a href="#method.basepoint">basepoint</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Clone">Clone</a><a href="#impl-Mul%3C%26%27b%20Scalar%3E">Mul&lt;&amp;&#39;b Scalar&gt;</a><a href="#impl-Mul%3C%26%27a%20EdwardsBasepointTable%3E">Mul&lt;&amp;&#39;a EdwardsBasepointTable&gt;</a><a href="#impl-Debug">Debug</a></div></div><p class='location'><a href='../index.html'>curve25519_dalek</a>::<wbr><a href='index.html'>edwards</a></p><script>window.sidebarCurrent = {name: 'EdwardsBasepointTable', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>curve25519_dalek</a>::<wbr><a href='index.html'>edwards</a>::<wbr><a class="struct" href=''>EdwardsBasepointTable</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/curve25519_dalek/edwards.rs.html#557' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct EdwardsBasepointTable(_);</pre><div class='docblock'><p>Precomputation</p>
+
+<p>XXX we should box the internals</p>
+</div>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../../curve25519_dalek/edwards/struct.EdwardsBasepointTable.html" title="struct curve25519_dalek::edwards::EdwardsBasepointTable">EdwardsBasepointTable</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/edwards.rs.html#620-647' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.create' class="method"><span id='create.v' class='invisible'><code>pub fn <a href='#method.create' class='fnname'>create</a>(basepoint: &amp;<a class="struct" href="../../curve25519_dalek/edwards/struct.ExtendedPoint.html" title="struct curve25519_dalek::edwards::ExtendedPoint">ExtendedPoint</a>) -&gt; <a class="struct" href="../../curve25519_dalek/edwards/struct.EdwardsBasepointTable.html" title="struct curve25519_dalek::edwards::EdwardsBasepointTable">EdwardsBasepointTable</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/edwards.rs.html#622-639' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Create a table of precomputed multiples of <code>basepoint</code>.</p>
+</div><h4 id='method.basepoint' class="method"><span id='basepoint.v' class='invisible'><code>pub fn <a href='#method.basepoint' class='fnname'>basepoint</a>(&amp;self) -&gt; <a class="struct" href="../../curve25519_dalek/edwards/struct.ExtendedPoint.html" title="struct curve25519_dalek::edwards::ExtendedPoint">ExtendedPoint</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/edwards.rs.html#642-646' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Get the basepoint for this table as an <code>ExtendedPoint</code>.</p>
+</div></div>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../curve25519_dalek/edwards/struct.EdwardsBasepointTable.html" title="struct curve25519_dalek::edwards::EdwardsBasepointTable">EdwardsBasepointTable</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/edwards.rs.html#556' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../../curve25519_dalek/edwards/struct.EdwardsBasepointTable.html" title="struct curve25519_dalek::edwards::EdwardsBasepointTable">EdwardsBasepointTable</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/edwards.rs.html#556' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 id='impl-Mul%3C%26%27b%20Scalar%3E' class='impl'><span class='in-band'><code>impl&lt;'a, 'b&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/arith/trait.Mul.html" title="trait core::ops::arith::Mul">Mul</a>&lt;&amp;'b <a class="struct" href="../../curve25519_dalek/scalar/struct.Scalar.html" title="struct curve25519_dalek::scalar::Scalar">Scalar</a>&gt; for &amp;'a <a class="struct" href="../../curve25519_dalek/edwards/struct.EdwardsBasepointTable.html" title="struct curve25519_dalek::edwards::EdwardsBasepointTable">EdwardsBasepointTable</a></code><a href='#impl-Mul%3C%26%27b%20Scalar%3E' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/edwards.rs.html#559-606' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Output' class="type"><span id='Output.t' class='invisible'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/arith/trait.Mul.html#associatedtype.Output' class="type">Output</a> = <a class="struct" href="../../curve25519_dalek/edwards/struct.ExtendedPoint.html" title="struct curve25519_dalek::edwards::ExtendedPoint">ExtendedPoint</a></code></span></h4>
+<div class='docblock'><p>The resulting type after applying the <code>*</code> operator.</p>
+</div><h4 id='method.mul' class="method"><span id='mul.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/arith/trait.Mul.html#tymethod.mul' class='fnname'>mul</a>(self, scalar: &amp;'b <a class="struct" href="../../curve25519_dalek/scalar/struct.Scalar.html" title="struct curve25519_dalek::scalar::Scalar">Scalar</a>) -&gt; <a class="struct" href="../../curve25519_dalek/edwards/struct.ExtendedPoint.html" title="struct curve25519_dalek::edwards::ExtendedPoint">ExtendedPoint</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/edwards.rs.html#587-605' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Construct an <code>ExtendedPoint</code> from a <code>Scalar</code>, <code>scalar</code>, by
+computing the multiple <code>aB</code> of the basepoint <code>B</code>.</p>
+
+<p>Precondition: the scalar must be reduced.</p>
+
+<p>The computation proceeds as follows, as described on page 13
+of the Ed25519 paper.  Write the scalar <code>a</code> in radix 16 with
+coefficients in [-8,8), i.e.,</p>
+
+<p>a = a_0 + a_1*16<sup>1</sup> + ... + a_63*16<sup>63,</sup></p>
+
+<p>with -8 ≤ a_i &lt; 8.  Then</p>
+
+<p>a*B = a_0*B + a_1*16<sup>1*B</sup> + ... + a_63*16<sup>63*B.</sup></p>
+
+<p>Grouping even and odd coefficients gives</p>
+
+<p>a*B =       a_0*16<sup>0*B</sup> + a_2*16<sup>2*B</sup> + ... + a_62*16<sup>62*B</sup>
+             + a_1*16<sup>1*B</sup> + a_3*16<sup>3*B</sup> + ... + a_63*16<sup>63*B</sup>
+       =      (a_0*16<sup>0*B</sup> + a_2*16<sup>2*B</sup> + ... + a_62*16<sup>62*B)</sup>
+         + 16*(a_1*16<sup>0*B</sup> + a_3*16<sup>2*B</sup> + ... + a_63*16<sup>62*B).</sup></p>
+
+<p>We then use the <code>select_precomputed_point</code> function, which
+takes <code>-8 ≤ x &lt; 8</code> and <code>[16^2i * B, ..., 8 * 16^2i * B]</code>,
+and returns <code>x * 16^2i * B</code> in constant time.</p>
+</div></div><h3 id='impl-Mul%3C%26%27a%20EdwardsBasepointTable%3E' class='impl'><span class='in-band'><code>impl&lt;'a, 'b&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/arith/trait.Mul.html" title="trait core::ops::arith::Mul">Mul</a>&lt;&amp;'a <a class="struct" href="../../curve25519_dalek/edwards/struct.EdwardsBasepointTable.html" title="struct curve25519_dalek::edwards::EdwardsBasepointTable">EdwardsBasepointTable</a>&gt; for &amp;'b <a class="struct" href="../../curve25519_dalek/scalar/struct.Scalar.html" title="struct curve25519_dalek::scalar::Scalar">Scalar</a></code><a href='#impl-Mul%3C%26%27a%20EdwardsBasepointTable%3E' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/edwards.rs.html#608-618' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Output-1' class="type"><span id='Output.t-1' class='invisible'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/arith/trait.Mul.html#associatedtype.Output' class="type">Output</a> = <a class="struct" href="../../curve25519_dalek/edwards/struct.ExtendedPoint.html" title="struct curve25519_dalek::edwards::ExtendedPoint">ExtendedPoint</a></code></span></h4>
+<div class='docblock'><p>The resulting type after applying the <code>*</code> operator.</p>
+</div><h4 id='method.mul-1' class="method"><span id='mul.v-1' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/arith/trait.Mul.html#tymethod.mul' class='fnname'>mul</a>(self, basepoint_table: &amp;'a <a class="struct" href="../../curve25519_dalek/edwards/struct.EdwardsBasepointTable.html" title="struct curve25519_dalek::edwards::EdwardsBasepointTable">EdwardsBasepointTable</a>) -&gt; <a class="struct" href="../../curve25519_dalek/edwards/struct.ExtendedPoint.html" title="struct curve25519_dalek::edwards::ExtendedPoint">ExtendedPoint</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/edwards.rs.html#615-617' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Construct an <code>ExtendedPoint</code> by via this <code>Scalar</code> times
+a the basepoint, <code>B</code> included in a precomputed <code>basepoint_table</code>.</p>
+
+<p>Precondition: this scalar must be reduced.</p>
+</div></div><h3 id='impl-Debug' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../curve25519_dalek/edwards/struct.EdwardsBasepointTable.html" title="struct curve25519_dalek::edwards::EdwardsBasepointTable">EdwardsBasepointTable</a></code><a href='#impl-Debug' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/edwards.rs.html#717-725' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/edwards.rs.html#718-724' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "curve25519_dalek";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

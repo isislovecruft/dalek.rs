@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `ristretto` mod in crate `curve25519_dalek`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, ristretto">
+
+    <title>curve25519_dalek::ristretto - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc mod">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Module ristretto</p><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#functions">Functions</a></li></ul></div><p class='location'><a href='../index.html'>curve25519_dalek</a></p><script>window.sidebarCurrent = {name: 'ristretto', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>curve25519_dalek</a>::<wbr><a class="mod" href=''>ristretto</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/curve25519_dalek/ristretto.rs.html#11-1257' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>An implementation of Ristretto, which provides a prime-order group.</p>
+
+<p>Ristretto is a modification of Mike Hamburg&#39;s <a href="https://eprint.iacr.org/2015/673.pdf">Decaf
+cofactor-eliminating point-compression
+scheme</a> to work on top of the
+Curve25519 group.</p>
+
+<p>Below are some notes on Ristretto, which are <em>NOT</em> a full writeup and which may have errors.</p>
+
+<h1 id='notes-on-ristretto' class='section-header'><a href='#notes-on-ristretto'>Notes on Ristretto</a></h1>
+<h2 id='decaf' class='section-header'><a href='#decaf'>Decaf</a></h2>
+<p>The introduction of the Decaf paper, <a href="https://eprint.iacr.org/2015/673.pdf"><em>Decaf: Eliminating cofactors
+through point compression</em></a>
+notes that while most cryptographic systems require a group of prime
+order, most concrete implementations using elliptic curve groups
+fall short -- they either provide a group of prime order, but with
+incomplete or variable-time addition formulae (for instance, most
+Weierstrass models), or else they provide a fast and safe
+implementation of a group whose order is not quite a prime \(q\),
+but \(hq\) for a small cofactor \(h\) (for instance, Edwards
+curves, which have cofactor at least \(4\)).</p>
+
+<p>This abstraction mismatch requires ad-hoc protocol modifications to
+ensure security; these modifications require careful analysis and
+are a recurring source of vulnerabilities.</p>
+
+<p>The Decaf suggestion is to use a quotient group, such as \(\mathcal
+E / \mathcal E[4]\) or \(2 \mathcal E / \mathcal E[2] \), to
+implement a prime-order group.</p>
+
+<p>This requires only changing</p>
+
+<ol>
+<li>the function for equality checking (so that two representatives
+of the same coset are considered equal);</li>
+<li>the function for encoding (so that two representatives of the
+same coset are encoded as identical bitstrings);</li>
+<li>the function for decoding (so that only the canonical encoding of
+a coset is accepted).</li>
+</ol>
+
+<p>Internally, each coset is represented by a curve point; two points
+may represent the same coset in the same way that two points with
+different \(X,Y,Z\) coordinates may represent the same point.  The
+group operations are carried out using the fast, safe Edwards
+formulas.</p>
+
+<p>The Decaf paper suggests implementing the compression and
+decompression routines using an isogeny from a Jacobi quartic; for
+curves of cofactor \(4\), this eliminates the cofactor, and
+explains the name: Decaf is named &quot;after the procedure which divides
+the effect of coffee by \(4\)&quot;.  However, Curve25519 has a
+cofactor of \(8\).  To eliminate its cofactor, we tweak Decaf to
+restrict further.  This gives the
+<a href="https://en.wikipedia.org/wiki/Ristretto">Ristretto</a> encoding.</p>
+
+<h2 id='the-jacobi-quartic' class='section-header'><a href='#the-jacobi-quartic'>The Jacobi Quartic</a></h2>
+<p>The Jacobi quartic is parameterized by \(e, A\), and is of the
+form $$ \mathcal J_{e,A} : t^2 = es^4 + 2As^2 + 1, $$ with
+identity point \((0,1)\).  For more details on the Jacobi quartic,
+see the <a href="https://eprint.iacr.org/2015/673.pdf">Decaf paper</a> or
+<a href="https://eprint.iacr.org/2009/312.pdf"><em>Jacobi Quartic Curves
+Revisited</em></a> by Hisil, Wong,
+Carter, and Dawson).</p>
+
+<p>When \(e = a^2\), \(\mathcal J_{e,A}\) has full
+\(2\)-torsion (i.e., \(\mathcal J[2] \cong \mathbb Z /2 \times
+\mathbb Z/2\)), and
+we can write the \(\mathcal J[2]\)-coset of a point \(P =
+(s,t)\) as
+$$
+P + \mathcal J[2] = \left\{
+                      (s,t),
+                      (-s,-t),
+                      (1/as, -t/as^2),
+                      (-1/as, t/as^2) \right\}.
+$$
+Notice that replacing \(a\) by \(-a\) just swaps the last two
+points, so this set does not depend on the choice of \(a\).  In
+what follows we require \(a = \pm 1\).</p>
+
+<h2 id='encoding-mathcal-j--mathcal-j2' class='section-header'><a href='#encoding-mathcal-j--mathcal-j2'>Encoding \(\mathcal J / \mathcal J[2]\)</a></h2>
+<p>To encode points on \(\mathcal J\) modulo \(\mathcal J[2]\),
+we need to choose a canonical representative of the above coset.
+To do this, it&#39;s sufficient to make two independent sign choices:
+the Decaf paper suggests choosing \((s,t)\) with \(s\)
+non-negative and finite, and \(t/s\) non-negative or infinite.</p>
+
+<p>The encoding is then the (canonical byte encoding of the)
+\(s\)-value of the canonical representative.</p>
+
+<h2 id='the-edwards-curve' class='section-header'><a href='#the-edwards-curve'>The Edwards Curve</a></h2>
+<p>Our primary internal model for Curve25519 points are the <a href="https://eprint.iacr.org/2008/522.pdf"><em>Extended
+Twisted Edwards Coordinates</em></a>
+of Hisil, Wong, Carter, and Dawson.
+These correspond to the affine model</p>
+
+<p>$$\mathcal E_{a,d} : ax^2 + y^2 = 1 + dx^2y^2.$$</p>
+
+<p>In projective coordinates, we represent a point as \((X:Y:Z:T)\)
+with $$XY = ZT, \quad aX^2 + Y^2 = Z^2 + dT^2.$$ (For more
+details on this model, see the documentation for the <code>edwards</code>
+module). The case \(a = 1\) is the <em>untwisted</em> case; we only
+consider \(a = \pm 1\), and in particular we focus on the twisted
+Edwards form of Curve25519, which has \(a = -1, d =
+-121665/121666\).  When not otherwise specified, we write
+\(\mathcal E\) for \(\mathcal E_{-1, -121665/121666}\).</p>
+
+<p>When both \(d\) and \(ad\) are nonsquare (which forces \(a\)
+to be square), the curve is <em>complete</em>.  In this case the
+four-torsion subgroup is cyclic, and we
+can write it explicitly as
+$$
+\mathcal E_{a,d}[4] = \{ (0,1),\; (1/\sqrt a, 0),\; (0, -1),\; (-1/\sqrt{a}, 0)\}.
+$$
+These are the only points with \(xy = 0\); the points with \( y
+\neq 0 \) are \(2\)-torsion.  The \(\mathcal
+E_{a,d}[4]\)-coset of \(P = (x,y)\) is then
+$$
+P + \mathcal E_{a,d}[4] = \{ (x,y),\; (y/\sqrt a, -x\sqrt a),\; (-x, -y),\; (-y/\sqrt a, x\sqrt a)\}.
+$$
+Notice that if \(xy \neq 0 \), then exactly two of
+these points have \( xy \) non-negative, and they differ by the
+\(2\)-torsion point \( (0,-1) \).  This means that we can select
+a representative modulo \(\mathcal
+E_{a,d}[2] \) by requiring \(xy\) nonnegative and \(y \neq
+0\), and we can ensure this condition by conditionally adding a
+\(4\)-torsion point if \(xy\) is negative or \(y = 0\).</p>
+
+<p>This procedure gives a canonical lift from \(\mathcal E / \mathcal
+E[4]\) to \(\mathcal E / \mathcal E[2]\).  Since it involves a
+conditional rotation, we refer to it as <em>torquing</em> the point.</p>
+
+<p>The structure of the Curve25519 group is \( \mathcal E(\mathbb
+F_p) \cong \mathbb Z / 8 \times \mathbb Z / \ell\), where \( \ell
+= 2^{252} + \cdots \) is a large prime.  Because \(\mathcal E[8]
+\cong \mathbb Z / 8\), we have \([2](\mathcal E[8]) = \mathcal
+E[4]\), \(\mathcal E[4] \cong \mathbb Z / 4
+\) and \( \mathcal E[2] \cong \mathbb Z / 2\).  In particular
+this tells us that the group 
+$$
+\frac{[2](\mathcal E)}{\mathcal E[4]}
+$$
+is well-defined and has prime order \( (8\ell / 2) / 4 = \ell \).
+This is the group we will construct using Ristretto.</p>
+
+<h2 id='the-isogeny' class='section-header'><a href='#the-isogeny'>The Isogeny</a></h2>
+<p>For \(a = \pm 1\), we have a \(2\)-isogeny
+$$
+\theta_{a,d} : \mathcal J_{a^2, -a(a+d)/(a-d)} \longrightarrow \mathcal E_{a,d}
+$$
+(or simply \(\theta\)) defined by
+$$
+\theta_{a,d} : (s,t) \mapsto \left( \frac{1}{\sqrt{ad-1}} \cdot \frac{2s}{t},\quad \frac{1+as^2}{1-as^2} \right).
+$$</p>
+
+<p>XXX Its dual is ... ?</p>
+
+<p>The kernel of the isogeny is \( {(0, \pm 1)} \).
+The image of the isogeny is \([2](\mathcal E)\).  To see this,
+first note that because \( \theta \circ \hat{\theta} = [2] \), we
+know that \( [2](\mathcal E) \subseteq \theta(\mathcal J)\); then, to see that
+\(\theta(\mathcal J)\) is exactly \([2](\mathcal E)\),
+recall that isogenous elliptic curves over a finite field have the
+same number of points (exercise 5.4 of Silverman), so that
+$$
+\# \theta(\mathcal J) = \frac {\# \mathcal J} {\# \ker \theta}
+= \frac {\# \mathcal E}{2} = \# [2](\mathcal E).
+$$</p>
+
+<p>To determine the image \(\theta(\mathcal J[2])\) of the
+\(2\)-torsion, we consider the image of the coset \(\theta((s,t)
++ \mathcal J[2])\).  Let \((x,y) = \theta(s,t)\); then
+\(\theta(-s,-t) = (x,y)\) and \(\theta(1/as, -t/as^2) = (-x,
+-y)\), so that \(\theta(\mathcal J[2]) = \mathcal E[2]\).</p>
+
+<p>The Decaf paper recalls that, for a group \( G \) with normal
+subgroup \(G&#39; \leq G\), a group homomorphism \( \phi : G
+\rightarrow H \) induces a homomorphism
+$$ 
+\bar{\phi} : \frac G {G&#39;} \longrightarrow \frac {\phi(G)}{\phi(G&#39;)} \leq \frac {H} {\phi(G&#39;)},
+$$ 
+and that the induced homomorphism \(\bar{\phi}\) is injective if
+\( \ker \phi \leq G&#39; \).  In our context, the kernel of
+\(\theta\) is \( \{(0, \pm 1)\} \leq \mathcal J[2] \),
+so \(\theta\) gives an isomorphism
+$$
+\frac {\mathcal J} {\mathcal J[2]} 
+\cong 
+\frac {\theta(\mathcal J)} {\theta(\mathcal J[2])}
+\cong
+\frac {[2](\mathcal E)} {\mathcal E[2]}.
+$$</p>
+
+<p>We can use the isomorphism to transfer the encoding of \(\mathcal
+J / \mathcal J[2] \) defined above to \([2](\mathcal E)/\mathcal
+E[2]\), by encoding the Edwards point \((x,y)\) using the Jacobi
+quartic encoding of \(\theta^{-1}(x,y)\).</p>
+
+<p>Since \(\# ([2](\mathcal E) / \mathcal E[2]) = (\#\mathcal
+E)/4\), if \(\mathcal E\) has cofactor \(4\), we&#39;re done.
+Otherwise, if \(\mathcal E\) has cofactor \(8\), as in the
+Curve25519 case, we use the torquing procedure to lift \(\mathcal E
+/ \mathcal E[4]\) to \(\mathcal E / \mathcal E[2]\), and then
+apply the encoding for \( [2](\mathcal E) / \mathcal E[2] \).</p>
+
+<h2 id='the-ristretto-encoding' class='section-header'><a href='#the-ristretto-encoding'>The Ristretto Encoding</a></h2>
+<p>We can write the above encoding/decoding procedure concretely (in affine
+coordinates) as follows:</p>
+
+<h3 id='encoding' class='section-header'><a href='#encoding'>Encoding</a></h3>
+<p>On input \( (x,y) \in [2](\mathcal E)\), a representative for a
+coset in \( [2](\mathcal E) / \mathcal E[4] \):</p>
+
+<ol>
+<li><p>Check if \( xy \) is negative or \( x = 0 \); if so, torque
+the point by setting \( (x,y) \gets (x,y) + P_4 \), where
+\(P_4\) is a \(4\)-torsion point.</p></li>
+<li><p>Check if \(x\) is negative or \( y = -1 \); if so, set 
+\( (x,y) \gets (x,y) + (0,-1) = (-x, -y) \).</p></li>
+<li><p>Compute $$ s = +\sqrt {(-a) \frac {1 - y} {1 + y} }, $$ choosing
+the positive square root.</p></li>
+</ol>
+
+<p>The output is then the (canonical) byte-encoding of \(s\).  </p>
+
+<p>If \(\mathcal E\) has cofactor \(4\), we skip the first step,
+since our input already represents a coset in
+\( [2](\mathcal E) / \mathcal E[2] \).</p>
+
+<p>To see that this corresponds to the encoding procedure above, notice
+that the first step lifts from \( \mathcal E / \mathcal E[4] \) to
+\(\mathcal E / \mathcal E[2]\).  To understand steps 2 and 3,
+notice that the \(y\)-coordinate of \(\theta(s,t)\) is 
+$$
+y = \frac {1 + as^2}{1 - as^2},
+$$
+so that the \(s\)-coordinate of \(\theta^{-1}(x,y)\) has 
+$$
+s^2 = (-a)\frac {1-y}{1+y}.
+$$
+Since
+$$
+x = \frac 1 {\sqrt {ad - 1}} \frac {2s} {t},
+$$
+we also have
+$$
+\frac s t = x \frac {\sqrt {ad-1}} 2,
+$$
+so that the sign of \(s/t\) is determined by the sign of \(x\).</p>
+
+<p>Recall that to choose a canonical representative of \( (s,t) +
+\mathcal J[2] \), it&#39;s sufficient to make two sign choices: the
+sign of \(s\) and the sign of \(s/t\).  Step 2 determines the
+sign of \(s/t\), while step 3 computes \(s\) and determines its
+sign (by choosing the positive square root).  Finally, the check
+that \(y \neq -1\) prevents division-by-zero when encoding the
+identity; it falls out of the optimized formulas below.</p>
+
+<h3 id='decoding' class='section-header'><a href='#decoding'>Decoding</a></h3>
+<p>On input <code>s_bytes</code>, decoding proceeds as follows:</p>
+
+<ol>
+<li><p>Decode <code>s_bytes</code> to \(s\); reject if <code>s_bytes</code> is not the
+canonical encoding of \(s\).</p></li>
+<li><p>Check whether \(s\) is negative; if so, reject.</p></li>
+<li><p>Compute
+$$
+y \gets \frac {1 + as^2}{1 - as^2}.
+$$</p></li>
+<li><p>Compute
+$$
+x \gets +\sqrt{ \frac{4s^2} {ad(1+as^2)^2 - (1-as^2)^2}},
+$$
+choosing the positive square root, or reject if the square root does
+not exist.</p></li>
+<li><p>Check whether \(xy\) is negative or \(y = 0\); if so, reject.</p></li>
+</ol>
+
+<h2 id='encoding-in-extended-coordinates' class='section-header'><a href='#encoding-in-extended-coordinates'>Encoding in Extended Coordinates</a></h2>
+<p>The formulas above are given in affine coordinates, but the usual
+internal representation is extended twisted Edwards coordinates \(
+(X:Y:Z:T) \) with \( x = X/Z \), \(y = Y/Z\), \(xy = T/Z \).
+Selecting the distinguished representative of the coset
+requires the affine coordinates \( (x,y) \), and computing \( s
+\) requires an inverse square root.
+As inversions are expensive, we&#39;d like to be able to do this
+whole computation with only one inverse square root, by batching
+together the inversion and the inverse square root.  </p>
+
+<p>However, it is not obvious how to do this, since the inverse square
+root computation depends on the affine coordinates (which select the
+distinguished representative).</p>
+
+<p>In what follows we consider only the case
+\(a = -1\); a similar argument applies to the case \( a = 1\).</p>
+
+<p>Since \(y = Y/Z\), in extended coordinates the formula for \(s\) becomes
+$$
+s = \sqrt{ \frac{ 1 - Y/Z}{1+Y/Z}} = \sqrt{\frac{Z - Y}{Z+Y}}
+= \frac {Z - Y} {\sqrt{Z^2 - Y^2}}.
+$$</p>
+
+<p>Here \( (X:Y:Z:T) \) are the coordinates of the distinguished
+representative of the coset.<br>
+Write \( (X_0 : Y_0 : Z_0 : T_0) \)
+for the coordinates of the initial representative.  Then the
+torquing procedure in step 1 replaces \( (X_0 : Y_0 : Z_0 :
+T_0) \) by \( (iY_0 : iX_0 : Z_0 : -T_0) \).  This means we
+want to obtain either
+$$
+\frac {1} { \sqrt{Z_0^2 - Y_0^2}}
+\quad \text{or} \quad
+\frac {1} { \sqrt{Z_0^2 + X_0^2}}.
+$$</p>
+
+<p>We can relate these using the identity
+$$
+(a-d)X^2Y^2 = (Z^2 - aX^2)(Z^2 - Y^2),
+$$
+which is valid for all curve points.  To see this, recall from the curve equation that
+$$
+-dX^2Y^2 = Z^4 - aZ^2X^2 - Z^2Y^2,
+$$
+so that
+$$
+(a-d)X^2Y^2 = Z^4 - aZ^2X^2 - Z^2Y^2 + aX^2Y^2 = (Z^2 - Y^2)(Z^2 + X^2).
+$$</p>
+
+<p>The encoding procedure is as follows:</p>
+
+<ol>
+<li>\(u_1 \gets (Z_0 + Y_0)(Z_0 - Y_0) = Z_0^2 - Y_0^2 \)</li>
+<li>\(u_2 \gets X_0 Y_0 \)</li>
+<li>\(I \gets \mathrm{invsqrt}(u_1 u_2^2) = 1/\sqrt{X_0^2 Y_0^2 (Z_0^2 - Y_0^2)} \)</li>
+<li>\(D_1 \gets u_1 I = \sqrt{(Z_0^2 - Y_0^2)/(X_0^2 Y_0^2)} \)</li>
+<li>\(D_2 \gets u_2 I = \pm \sqrt{1/(Z_0^2 - Y_0^2)} \)</li>
+<li>\(Z_{inv} \gets D_1 D_2 T_0 = (u_1 u_2)/(u_1 u_2^2) T_0 = T_0 / X_0 Y_0 = 1/Z_0 \)</li>
+<li>If \( T_0 Z_{inv} = x_0 y_0 \) is negative:
+
+<ol>
+<li>\( X \gets iY_0 \)</li>
+<li>\( Y \gets iX_0 \)</li>
+<li>\( D \gets D_1 / \sqrt{a-d} = 1/\sqrt{Z_0^2 + X_0^2} \)</li>
+</ol></li>
+<li>Otherwise:
+
+<ol>
+<li>\( X \gets X_0 \)</li>
+<li>\( Y \gets Y_0 \)</li>
+<li>\( D \gets D_2 = \pm \sqrt{1/(Z_0^2 - Y_0^2)} \)</li>
+</ol></li>
+<li>If \( X Z_{inv} = x \) is negative, set \( Y \gets - Y\)</li>
+<li>Compute \( s \gets (Z - Y) D = (Z - Y) / \sqrt{Z^2 - Y^2} \) and return.</li>
+</ol>
+
+<h2 id='decoding-to-extended-coordinates' class='section-header'><a href='#decoding-to-extended-coordinates'>Decoding to Extended Coordinates</a></h2>
+<h2 id='equality-testing' class='section-header'><a href='#equality-testing'>Equality Testing</a></h2>
+<h2 id='elligator' class='section-header'><a href='#elligator'>Elligator</a></h2>
+<h2 id='the-double-ristretto-encoding' class='section-header'><a href='#the-double-ristretto-encoding'>The Double-Ristretto Encoding</a></h2>
+<p>It&#39;s possible to do batch encoding of \( [2]P \) using the dual
+isogeny \(\hat{\theta}\).  Defer this for now.</p>
+
+<h2 id='' class='section-header'><a href='#'>???</a></h2></div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="vartime/index.html"
+                                  title='mod curve25519_dalek::ristretto::vartime'>vartime</a></td>
+                           <td class='docblock-short'>
+                                <p>Variable-time operations on ristretto points, useful for non-secret data.</p>
+                           </td>
+                       </tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.CompressedRistretto.html"
+                                  title='struct curve25519_dalek::ristretto::CompressedRistretto'>CompressedRistretto</a></td>
+                           <td class='docblock-short'>
+                                <p>A point serialized using Mike Hamburg&#39;s Ristretto scheme.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.RistrettoBasepointTable.html"
+                                  title='struct curve25519_dalek::ristretto::RistrettoBasepointTable'>RistrettoBasepointTable</a></td>
+                           <td class='docblock-short'>
+                                <p>Precomputation</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.RistrettoPoint.html"
+                                  title='struct curve25519_dalek::ristretto::RistrettoPoint'>RistrettoPoint</a></td>
+                           <td class='docblock-short'>
+                                <p>A <code>RistrettoPoint</code> represents a point in the Ristretto group for
+Curve25519.  Ristretto, a variant of Decaf, constructs a
+prime-order group as a quotient group of a subgroup of (the
+Edwards form of) Curve25519.</p>
+                           </td>
+                       </tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.multiscalar_mult.html"
+                                  title='fn curve25519_dalek::ristretto::multiscalar_mult'>multiscalar_mult</a></td>
+                           <td class='docblock-short'>
+                                <p>Given a vector of (possibly secret) scalars and a vector of
+(possibly secret) points, compute <code>c_1 P_1 + ... + c_n P_n</code>.</p>
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "curve25519_dalek";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

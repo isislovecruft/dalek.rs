@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["diffie_hellman","Utility function to make it easier to call `x25519()` with byte arrays as inputs and outputs."],["generate_public","Given an x25519 secret key, compute its corresponding public key."],["generate_secret","Generate an x25519 secret key."],["x25519","The x25519 function, as specified in RFC7748."]]});

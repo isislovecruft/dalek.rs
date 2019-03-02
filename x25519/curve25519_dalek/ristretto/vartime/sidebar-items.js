@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["multiscalar_mult","Given a vector of public scalars and a vector of (possibly secret) points, compute"]]});

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `FieldElement64` struct in crate `curve25519_dalek`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, FieldElement64">
+
+    <title>curve25519_dalek::field::FieldElement64 - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Struct FieldElement64</p><div class="block items"><ul><li><a href="#methods">Methods</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='../index.html'>curve25519_dalek</a>::<wbr><a href='index.html'>field</a></p><script>window.sidebarCurrent = {name: 'FieldElement64', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>curve25519_dalek</a>::<wbr><a href='index.html'>field</a>::<wbr><a class="struct" href=''>FieldElement64</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/curve25519_dalek/field_64bit.rs.html#54' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct FieldElement64(pub <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u64.html">u64</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 5]</a>);</pre><div class='docblock'><p>A <code>FieldElement64</code> represents an element of the field GF(2<sup>255</sup> - 19).</p>
+
+<p>In the 64-bit implementation, a <code>FieldElement</code> is represented in
+radix 2<sup>51</sup> as five <code>u64</code>s; the coefficients are allowed to grow up
+to 2<sup>54</sup> between reductions mod <code>p</code>.</p>
+
+<h1 id='warning' class='section-header'><a href='#warning'>Warning</a></h1>
+<p>You almost certainly do not want to use <code>FieldElement64</code> directly.  Consider
+using <code>curve25519_dalek::field::FieldElement</code>, which will automatically
+select between <code>FieldElement32</code> and <code>FieldElement64</code> depending on whether
+curve25519-dalek was compiled with <code>--features=&quot;nightly&quot;</code>.</p>
+
+<p>This implementation, <code>FieldElement64</code>, is intended for x64_64 platforms,
+which have the <code>MUL</code> instructions taking 64-bit inputs and producing 128-bit
+outputs.  On other platforms, this implementation is not recommended.  On
+Haswell and newer, the BMI2 instruction set provides <code>MULX</code> and friends,
+which gives even better performance.  This implementation requires Rust&#39;s
+<code>u128</code>, which is not yet stable.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/field_64bit.rs.html#190-414' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.negate' class="method"><span id='negate.v' class='invisible'><code>fn <a href='#method.negate' class='fnname'>negate</a>(&amp;mut self)</code></span></h4>
+<div class='docblock'><p>Invert the sign of this field element</p>
+</div><h4 id='method.zero' class="method"><span id='zero.v' class='invisible'><code>fn <a href='#method.zero' class='fnname'>zero</a>() -&gt; <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>Construct zero.</p>
+</div><h4 id='method.one' class="method"><span id='one.v' class='invisible'><code>fn <a href='#method.one' class='fnname'>one</a>() -&gt; <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>Construct one.</p>
+</div><h4 id='method.minus_one' class="method"><span id='minus_one.v' class='invisible'><code>fn <a href='#method.minus_one' class='fnname'>minus_one</a>() -&gt; <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>Construct -1.</p>
+</div><h4 id='method.from_bytes' class="method"><span id='from_bytes.v' class='invisible'><code>fn <a href='#method.from_bytes' class='fnname'>from_bytes</a>(bytes: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 32]</a>) -&gt; <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>Load a <code>FieldElement64</code> from the low 255 bits of a 256-bit
+input.</p>
+
+<h1 id='warning-1' class='section-header'><a href='#warning-1'>Warning</a></h1>
+<p>This function does not check that the input used the canonical
+representative.  It masks the high bit, but it will happily
+decode 2<sup>255</sup> - 18 to 1.  Applications that require a canonical
+encoding of every field element should decode, re-encode to
+the canonical encoding, and check that the input was
+canonical.</p>
+</div><h4 id='method.to_bytes' class="method"><span id='to_bytes.v' class='invisible'><code>fn <a href='#method.to_bytes' class='fnname'>to_bytes</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 32]</a></code></span></h4>
+<div class='docblock'><p>Serialize this <code>FieldElement64</code> to a 32-byte array.  The
+encoding is canonical.</p>
+</div><h4 id='method.square' class="method"><span id='square.v' class='invisible'><code>fn <a href='#method.square' class='fnname'>square</a>(&amp;self) -&gt; <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>Returns the square of this field element.</p>
+</div><h4 id='method.square2' class="method"><span id='square2.v' class='invisible'><code>fn <a href='#method.square2' class='fnname'>square2</a>(&amp;self) -&gt; <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>Returns 2 times the square of this field element.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> for <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/field_64bit.rs.html#53' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/field_64bit.rs.html#53' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/field_64bit.rs.html#56-60' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;'b&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/trait.AddAssign.html" title="trait core::ops::AddAssign">AddAssign</a>&lt;&amp;'b <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a>&gt; for <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/field_64bit.rs.html#62-68' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.add_assign' class="method"><span id='add_assign.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.AddAssign.html#tymethod.add_assign' class='fnname'>add_assign</a>(&amp;mut self, _rhs: &amp;'b <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a>)</code></span></h4>
+<div class='docblock'><p>The method for the <code>+=</code> operator</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;'a, 'b&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/trait.Add.html" title="trait core::ops::Add">Add</a>&lt;&amp;'b <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a>&gt; for &amp;'a <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/field_64bit.rs.html#70-77' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Output' class="type"><span id='Output.t' class='invisible'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Add.html#associatedtype.Output' class="type">Output</a> = <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>The resulting type after applying the <code>+</code> operator</p>
+</div><h4 id='method.add' class="method"><span id='add.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Add.html#tymethod.add' class='fnname'>add</a>(self, _rhs: &amp;'b <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a>) -&gt; <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>The method for the <code>+</code> operator</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;'b&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/trait.SubAssign.html" title="trait core::ops::SubAssign">SubAssign</a>&lt;&amp;'b <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a>&gt; for <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/field_64bit.rs.html#79-84' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.sub_assign' class="method"><span id='sub_assign.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.SubAssign.html#tymethod.sub_assign' class='fnname'>sub_assign</a>(&amp;mut self, _rhs: &amp;'b <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a>)</code></span></h4>
+<div class='docblock'><p>The method for the <code>-=</code> operator</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;'a, 'b&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/trait.Sub.html" title="trait core::ops::Sub">Sub</a>&lt;&amp;'b <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a>&gt; for &amp;'a <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/field_64bit.rs.html#86-107' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Output-1' class="type"><span id='Output.t-1' class='invisible'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Sub.html#associatedtype.Output' class="type">Output</a> = <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>The resulting type after applying the <code>-</code> operator</p>
+</div><h4 id='method.sub' class="method"><span id='sub.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Sub.html#tymethod.sub' class='fnname'>sub</a>(self, _rhs: &amp;'b <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a>) -&gt; <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>The method for the <code>-</code> operator</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;'b&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/trait.MulAssign.html" title="trait core::ops::MulAssign">MulAssign</a>&lt;&amp;'b <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a>&gt; for <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/field_64bit.rs.html#109-114' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.mul_assign' class="method"><span id='mul_assign.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.MulAssign.html#tymethod.mul_assign' class='fnname'>mul_assign</a>(&amp;mut self, _rhs: &amp;'b <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a>)</code></span></h4>
+<div class='docblock'><p>The method for the <code>*=</code> operator</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;'a, 'b&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/trait.Mul.html" title="trait core::ops::Mul">Mul</a>&lt;&amp;'b <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a>&gt; for &amp;'a <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/field_64bit.rs.html#116-170' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Output-2' class="type"><span id='Output.t-2' class='invisible'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Mul.html#associatedtype.Output' class="type">Output</a> = <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>The resulting type after applying the <code>*</code> operator</p>
+</div><h4 id='method.mul' class="method"><span id='mul.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Mul.html#tymethod.mul' class='fnname'>mul</a>(self, _rhs: &amp;'b <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a>) -&gt; <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>The method for the <code>*</code> operator</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl&lt;'a&gt; <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/trait.Neg.html" title="trait core::ops::Neg">Neg</a> for &amp;'a <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/field_64bit.rs.html#172-179' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='associatedtype.Output-3' class="type"><span id='Output.t-3' class='invisible'><code>type <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Neg.html#associatedtype.Output' class="type">Output</a> = <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>The resulting type after applying the <code>-</code> operator</p>
+</div><h4 id='method.neg' class="method"><span id='neg.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/trait.Neg.html#tymethod.neg' class='fnname'>neg</a>(self) -&gt; <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span></h4>
+<div class='docblock'><p>The method for the unary <code>-</code> operator</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="../../subtle/trait.ConditionallyAssignable.html" title="trait subtle::ConditionallyAssignable">ConditionallyAssignable</a> for <a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/field_64bit.rs.html#181-188' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.conditional_assign' class="method"><span id='conditional_assign.v' class='invisible'><code>fn <a href='../../subtle/trait.ConditionallyAssignable.html#tymethod.conditional_assign' class='fnname'>conditional_assign</a>(&amp;mut self, f: &amp;<a class="struct" href="../../curve25519_dalek/field/struct.FieldElement64.html" title="struct curve25519_dalek::field::FieldElement64">FieldElement64</a>, choice: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>)</code></span></h4>
+<div class='docblock'><p>Conditionally assign <code>other</code> to <code>self</code> in constant time. <a href="../../subtle/trait.ConditionallyAssignable.html#tymethod.conditional_assign">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "curve25519_dalek";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

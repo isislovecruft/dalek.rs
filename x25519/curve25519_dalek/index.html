@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `curve25519_dalek` crate.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, curve25519_dalek">
+
+    <title>curve25519_dalek - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc mod">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Crate curve25519_dalek</p><div class="block items"><ul><li><a href="#modules">Modules</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'curve25519_dalek', ty: 'mod', relpath: '../'};</script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Crate <a class="mod" href=''>curve25519_dalek</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/curve25519_dalek/lib.rs.html#11-96' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'>
+<h1 id='curve25519-dalek' class='section-header'><a href='#curve25519-dalek'>curve25519-dalek</a></h1>
+<p><strong>A Rust implementation of field and group operations on an Edwards curve
+over GF(2<sup>255</sup> - 19).</strong></p>
+
+<p><strong>[SPOILER ALERT]</strong> The Twelfth Doctor&#39;s first encounter with the Daleks is
+in his second full episode, &quot;Into the Dalek&quot;.  A beleaguered ship of the
+&quot;Combined Galactic Resistance&quot; has discovered a broken Dalek that has
+turned &quot;good&quot;, desiring to kill all other Daleks.  The Doctor, Clara and a
+team of soldiers are miniaturized and enter the Dalek, which the Doctor
+names Rusty.  They repair the damage, but accidentally restore it to its
+original nature, causing it to go on the rampage and alert the Dalek fleet
+to the whereabouts of the rebel ship.  However, the Doctor manages to
+return Rusty to its previous state by linking his mind with the Dalek&#39;s:
+Rusty shares the Doctor&#39;s view of the universe&#39;s beauty, but also his deep
+hatred of the Daleks.  Rusty destroys the other Daleks and departs the
+ship, determined to track down and bring an end to the Dalek race.</p>
+</div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="constants/index.html"
+                                  title='mod curve25519_dalek::constants'>constants</a></td>
+                           <td class='docblock-short'>
+                                <p>This module contains various constants (such as curve parameters
+and useful field elements like <code>sqrt(-1)</code>), as well as
+lookup tables of pre-computed points.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="edwards/index.html"
+                                  title='mod curve25519_dalek::edwards'>edwards</a></td>
+                           <td class='docblock-short'>
+                                <p>Group operations for Curve25519, in Edwards form.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="montgomery/index.html"
+                                  title='mod curve25519_dalek::montgomery'>montgomery</a></td>
+                           <td class='docblock-short'>
+                                <p>Montgomery arithmetic.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="ristretto/index.html"
+                                  title='mod curve25519_dalek::ristretto'>ristretto</a></td>
+                           <td class='docblock-short'>
+                                <p>An implementation of Ristretto, which provides a prime-order group.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="scalar/index.html"
+                                  title='mod curve25519_dalek::scalar'>scalar</a></td>
+                           <td class='docblock-short'>
+                                <p>Arithmetic for scalar multiplication.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="traits/index.html"
+                                  title='mod curve25519_dalek::traits'>traits</a></td>
+                           <td class='docblock-short'>
+                                <p>Module for common traits.</p>
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "curve25519_dalek";
+    </script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

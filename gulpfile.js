@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.styles = styles;
 exports.scripts = scripts;
 exports.html = html;
+exports.img = img;
 exports.watch = watchFiles;
 exports.default = exports.clean = void 0;
 
@@ -41,6 +42,10 @@ var paths = {
   html: {
     src: "src/*.html",
     dest: "dist"
+  },
+  img: {
+    src: "src/*.png",
+    dest: "dist"
   }
 };
 
@@ -69,13 +74,21 @@ function html() {
   })).pipe(_gulp.default.dest(paths.html.dest));
 }
 
+function img() {
+  return _gulp.default.src(paths.img.src).pipe(_gulp.default.dest(paths.img.dest));
+}
+
 function watchFiles() {
   _gulp.default.watch(paths.scripts.src, scripts);
 
   _gulp.default.watch(paths.styles.src, styles);
+
+  _gulp.default.watch(paths.html.src, styles);
+
+  _gulp.default.watch(paths.img.src, styles);
 }
 
-var build = _gulp.default.series(clean, _gulp.default.parallel(styles, scripts, html));
+var build = _gulp.default.series(clean, _gulp.default.parallel(styles, scripts, html, img));
 
 var _default = build;
 exports.default = _default;

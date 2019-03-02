@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `CompressedMontgomeryU` struct in crate `curve25519_dalek`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, CompressedMontgomeryU">
+
+    <title>curve25519_dalek::montgomery::CompressedMontgomeryU - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Struct CompressedMontgomeryU</p><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.as_bytes">as_bytes</a><a href="#method.to_bytes">to_bytes</a><a href="#method.decompress_edwards">decompress_edwards</a><a href="#method.decompress">decompress</a><a href="#method.to_edwards_y">to_edwards_y</a><a href="#method.to_montgomery_v">to_montgomery_v</a><a href="#method.to_edwards_x">to_edwards_x</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Copy">Copy</a><a href="#impl-Clone">Clone</a><a href="#impl-Debug">Debug</a><a href="#impl-PartialEq">PartialEq</a><a href="#impl-Eq">Eq</a></div></div><p class='location'><a href='../index.html'>curve25519_dalek</a>::<wbr><a href='index.html'>montgomery</a></p><script>window.sidebarCurrent = {name: 'CompressedMontgomeryU', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>curve25519_dalek</a>::<wbr><a href='index.html'>montgomery</a>::<wbr><a class="struct" href=''>CompressedMontgomeryU</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#61' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct CompressedMontgomeryU(pub <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 32]</a>);</pre><div class='docblock'><p>In &quot;Montgomery u&quot; format, as used in X25519, a point <code>(u,v)</code> on
+the Montgomery curve</p>
+
+<p>v<sup>2</sup> = u * (u<sup>2</sup> + 486662*u + 1)</p>
+
+<p>is represented just by <code>u</code>.  Note that we use <code>(u,v)</code> instead of
+<code>(x,y)</code> for Montgomery coordinates to avoid confusion with Edwards
+coordinates.  For Montgomery curves, it is possible to compute the
+<code>u</code>-coordinate of <code>n(u,v)</code> just from <code>n</code> and <code>u</code>, so it is not
+necessary to use <code>v</code> for a Diffie-Hellman key exchange.</p>
+</div>
+                    <h2 id='methods' class='small-section-header'>
+                      Methods<a href='#methods' class='anchor'></a>
+                    </h2>
+                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../../curve25519_dalek/montgomery/struct.CompressedMontgomeryU.html" title="struct curve25519_dalek::montgomery::CompressedMontgomeryU">CompressedMontgomeryU</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#63-195' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.as_bytes' class="method"><span id='as_bytes.v' class='invisible'><code>pub fn <a href='#method.as_bytes' class='fnname'>as_bytes</a>&lt;'a&gt;(&amp;'a self) -&gt; &amp;'a <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 32]</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#65-67' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>View this <code>CompressedMontgomeryU</code> as an array of bytes.</p>
+</div><h4 id='method.to_bytes' class="method"><span id='to_bytes.v' class='invisible'><code>pub fn <a href='#method.to_bytes' class='fnname'>to_bytes</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.array.html">; 32]</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#70-72' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Convert this <code>CompressedMontgomeryU</code> to an array of bytes.</p>
+</div><h4 id='method.decompress_edwards' class="method"><span id='decompress_edwards.v' class='invisible'><code>pub fn <a href='#method.decompress_edwards' class='fnname'>decompress_edwards</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="struct" href="../../curve25519_dalek/edwards/struct.ExtendedPoint.html" title="struct curve25519_dalek::edwards::ExtendedPoint">ExtendedPoint</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#95-112' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Attempt to decompress to an <code>ExtendedPoint</code>.</p>
+
+<h1 id='note' class='section-header'><a href='#note'>Note</a></h1>
+<p>Since there are two curve points with the same
+<code>u</code>-coordinate, the <code>u</code>-coordinate does not fully specify a
+point.  That is, roundtripping between an <code>ExtendedPoint</code> and
+a <code>CompressedMontgomeryU</code> discards its sign bit.</p>
+
+<h1 id='warning' class='section-header'><a href='#warning'>Warning</a></h1>
+<p>This function is <em>not</em> constant time.</p>
+
+<h1 id='return' class='section-header'><a href='#return'>Return</a></h1>
+<p>An <code>Option&lt;ExtendedPoint&gt;</code>, which will be <code>None</code> if either condition holds:</p>
+
+<ul>
+<li><code>u = -1</code>, or</li>
+<li><code>v</code> is not square.</li>
+</ul>
+</div><h4 id='method.decompress' class="method"><span id='decompress.v' class='invisible'><code>pub fn <a href='#method.decompress' class='fnname'>decompress</a>(&amp;self) -&gt; <a class="struct" href="../../curve25519_dalek/montgomery/struct.MontgomeryPoint.html" title="struct curve25519_dalek::montgomery::MontgomeryPoint">MontgomeryPoint</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#123-128' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Decompress this <code>CompressedMontgomeryU</code> to a <code>MontgomeryPoint</code>.</p>
+
+<p>Going from affine to projective coordinates, we have:</p>
+
+<p>    u → U/W</p>
+
+<h1 id='returns' class='section-header'><a href='#returns'>Returns</a></h1>
+<p>A projective <code>MontgomeryPoint</code> corresponding to this compressed point.</p>
+</div><h4 id='method.to_edwards_y' class="method"><span id='to_edwards_y.v' class='invisible'><code>pub fn <a href='#method.to_edwards_y' class='fnname'>to_edwards_y</a>(u: &amp;FieldElement64) -&gt; FieldElement64</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#136-139' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Given a Montgomery <code>u</code> coordinate, compute an Edwards <code>y</code> via
+<code>y = (u-1)/(u+1)</code>.</p>
+
+<h1 id='return-1' class='section-header'><a href='#return-1'>Return</a></h1>
+<p>A <code>FieldElement</code> corresponding to this coordinate, but in Edwards form.</p>
+</div><h4 id='method.to_montgomery_v' class="method"><span id='to_montgomery_v.v' class='invisible'><code>pub fn <a href='#method.to_montgomery_v' class='fnname'>to_montgomery_v</a>(u: &amp;FieldElement64) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a>, FieldElement64<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#150-159' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Given a Montgomery <code>u</code> coordinate, compute the corresponding
+Montgomery <code>v</code> coordinate by computing the right-hand side of
+the Montgomery field equation, <code>v² = u(u² + Au +1)</code>.</p>
+
+<h1 id='return-2' class='section-header'><a href='#return-2'>Return</a></h1>
+<p>A tuple of (<code>u8</code>, <code>FieldElement</code>), where the <code>u8</code> is <code>1</code> if the v² was
+actually a square and <code>0</code> if otherwise, along with a <code>FieldElement</code>: the
+Montgomery <code>v</code> corresponding to this <code>u</code>.</p>
+</div><h4 id='method.to_edwards_x' class="method"><span id='to_edwards_x.v' class='invisible'><code>pub fn <a href='#method.to_edwards_x' class='fnname'>to_edwards_x</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;u: &amp;FieldElement64, <br>&nbsp;&nbsp;&nbsp;&nbsp;v: &amp;FieldElement64, <br>&nbsp;&nbsp;&nbsp;&nbsp;sign: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a><br>) -&gt; FieldElement64</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#186-194' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Given Montgomery coordinates <code>(u, v)</code>, recover the Edwards <code>x</code> coordinate.</p>
+
+<h1 id='inputs' class='section-header'><a href='#inputs'>Inputs</a></h1>
+<ul>
+<li><code>u</code> and <code>v</code> are both <code>&amp;FieldElement</code>s, corresponding the the <code>(u, v)</code>
+coordinates of this <code>CompressedMontgomeryU</code>.</li>
+<li><code>sign</code> is an &amp;u8.</li>
+</ul>
+
+<h2 id='explanation-of-choice-of-sign' class='section-header'><a href='#explanation-of-choice-of-sign'>Explanation of choice of <code>sign</code></a></h2>
+<h3 id='original-signal-behaviour' class='section-header'><a href='#original-signal-behaviour'>Original Signal behaviour:</a></h3>
+<ul>
+<li><code>1u8</code> will leave <code>x</code> negative if it is negative, and will negate
+<code>x</code> if it is positive, and</li>
+<li><code>0u8</code> will leave <code>x</code> positive if it is positive, and will negate
+<code>x</code> if it is negative.</li>
+</ul>
+
+<p>Hence, if <code>sign</code> is <code>1u8</code>, the returned <code>x</code> will be negative.
+Otherwise, if <code>sign</code> is <code>0u8</code>, the returned <code>x</code> will be positive.</p>
+
+<h1 id='return-3' class='section-header'><a href='#return-3'>Return</a></h1>
+<p>A <code>FieldElement</code>, the Edwards <code>x</code> coordinate, by using <code>(u, v)</code> to
+convert from Montgomery to Edwards form via the right-hand side of the
+equation: <code>x=(u/v)*sqrt(-A-2)</code>.</p>
+</div></div>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Copy' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> for <a class="struct" href="../../curve25519_dalek/montgomery/struct.CompressedMontgomeryU.html" title="struct curve25519_dalek::montgomery::CompressedMontgomeryU">CompressedMontgomeryU</a></code><a href='#impl-Copy' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#60' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../curve25519_dalek/montgomery/struct.CompressedMontgomeryU.html" title="struct curve25519_dalek::montgomery::CompressedMontgomeryU">CompressedMontgomeryU</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#60' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../../curve25519_dalek/montgomery/struct.CompressedMontgomeryU.html" title="struct curve25519_dalek::montgomery::CompressedMontgomeryU">CompressedMontgomeryU</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#60' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 id='impl-Debug' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../../curve25519_dalek/montgomery/struct.CompressedMontgomeryU.html" title="struct curve25519_dalek::montgomery::CompressedMontgomeryU">CompressedMontgomeryU</a></code><a href='#impl-Debug' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#60' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#60' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></p>
+</div></div><h3 id='impl-PartialEq' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html" title="trait core::cmp::PartialEq">PartialEq</a> for <a class="struct" href="../../curve25519_dalek/montgomery/struct.CompressedMontgomeryU.html" title="struct curve25519_dalek::montgomery::CompressedMontgomeryU">CompressedMontgomeryU</a></code><a href='#impl-PartialEq' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#60' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.eq' class="method"><span id='eq.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class="struct" href="../../curve25519_dalek/montgomery/struct.CompressedMontgomeryU.html" title="struct curve25519_dalek::montgomery::CompressedMontgomeryU">CompressedMontgomeryU</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#60' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne' class="method"><span id='ne.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class="struct" href="../../curve25519_dalek/montgomery/struct.CompressedMontgomeryU.html" title="struct curve25519_dalek::montgomery::CompressedMontgomeryU">CompressedMontgomeryU</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#60' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div><h3 id='impl-Eq' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html" title="trait core::cmp::Eq">Eq</a> for <a class="struct" href="../../curve25519_dalek/montgomery/struct.CompressedMontgomeryU.html" title="struct curve25519_dalek::montgomery::CompressedMontgomeryU">CompressedMontgomeryU</a></code><a href='#impl-Eq' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/curve25519_dalek/montgomery.rs.html#60' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "curve25519_dalek";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

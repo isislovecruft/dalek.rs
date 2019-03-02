@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `subtle` crate.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, subtle">
+
+    <title>subtle - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc mod">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Crate subtle</p><div class="block items"><ul><li><a href="#macros">Macros</a></li><li><a href="#traits">Traits</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'subtle', ty: 'mod', relpath: '../'};</script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Crate <a class="mod" href=''>subtle</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/subtle/lib.rs.html#12-666' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Pure-Rust traits and utilities for constant-time cryptographic implementations.</p>
+</div><h2 id='macros' class='section-header'><a href="#macros">Macros</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="macro" href="macro.generate_array_conditional_assign.html"
+                                  title='macro subtle::generate_array_conditional_assign'>generate_array_conditional_assign</a></td>
+                           <td class='docblock-short'>
+                                <p>Generate a constant time <code>conditional_assign()</code> method for an array of type
+<code>[$t; $n]</code>, where <code>$t</code> is a type which implements <code>core::ops::BitAnd</code> and
+<code>core::ops::BitXor</code> and <code>$n</code> is an expression which evaluates to an integer.</p>
+                           </td>
+                       </tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="trait" href="trait.ConditionallyAssignable.html"
+                                  title='trait subtle::ConditionallyAssignable'>ConditionallyAssignable</a></td>
+                           <td class='docblock-short'>
+                                <p>Trait for items which can be conditionally assigned in constant time.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="trait" href="trait.ConditionallyNegatable.html"
+                                  title='trait subtle::ConditionallyNegatable'>ConditionallyNegatable</a></td>
+                           <td class='docblock-short'>
+                                <p>Trait for items which can be conditionally negated in constant time.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="trait" href="trait.ConditionallySwappable.html"
+                                  title='trait subtle::ConditionallySwappable'>ConditionallySwappable</a></td>
+                           <td class='docblock-short'>
+                                <p>Trait for things which are conditionally swappable in constant time.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="trait" href="trait.Equal.html"
+                                  title='trait subtle::Equal'>Equal</a></td>
+                           <td class='docblock-short'>
+                                <p>Trait for items whose equality to another item may be tested in constant time.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="trait" href="trait.IsNonZero.html"
+                                  title='trait subtle::IsNonZero'>IsNonZero</a></td>
+                           <td class='docblock-short'>
+                                <p>Trait for testing if something is non-zero in constant time.</p>
+                           </td>
+                       </tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.byte_is_nonzero.html"
+                                  title='fn subtle::byte_is_nonzero'>byte_is_nonzero</a></td>
+                           <td class='docblock-short'>
+                                <p>Test if a byte is non-zero in constant time.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.bytes_equal.html"
+                                  title='fn subtle::bytes_equal'>bytes_equal</a></td>
+                           <td class='docblock-short'>
+                                <p>Check equality of two bytes in constant time.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.conditional_select.html"
+                                  title='fn subtle::conditional_select'>conditional_select</a></td>
+                           <td class='docblock-short'>
+                                <p>Select <code>a</code> if <code>choice == 1</code> or select <code>b</code> if <code>choice == 0</code>, in constant time.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.slices_equal.html"
+                                  title='fn subtle::slices_equal'>slices_equal</a></td>
+                           <td class='docblock-short'>
+                                <p>Check equality of two slices, <code>a</code> and <code>b</code>, in constant time.</p>
+                           </td>
+                       </tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.Mask.html"
+                                  title='type subtle::Mask'>Mask</a></td>
+                           <td class='docblock-short'>
+                                <p>A <code>Mask</code> represents a choice which is not a boolean.</p>
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>↑</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>↓</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>↹</dt>
+                    <dd>Switch tab</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt style="width:31px;">+ / -</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "subtle";
+    </script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>
