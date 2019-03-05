@@ -6,6 +6,10 @@
     &__title {
       display: block;
     }
+
+    &__img {
+      display: none;
+    }
   }
 
   .site-header,
@@ -55,13 +59,14 @@
       padding: 0.3rem;
 
       &__content {
+        transition: all 0.2s ease-in-out;
+        margin-top: 0.5rem;
         position: absolute;
         background: $mid-color;
         height: 17rem;
 
         &_hidden {
-          border: 0;
-          margin-top: 0;
+          border: solid $dark-color 0.1rem;
           height: 0;
         }
       }

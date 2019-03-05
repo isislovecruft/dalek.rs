@@ -18,9 +18,15 @@
     font-weight: 700;
   }
 
+  &__img {
+    width: 70%;
+    height: auto;
+  }
+
   &__content {
     padding: 0 1rem;
     max-width: 52rem;
+    text-align: center;
   }
 
   &__p {

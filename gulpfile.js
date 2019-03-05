@@ -44,8 +44,8 @@ var paths = {
     dest: "dist"
   },
   img: {
-    src: "src/*.png",
-    dest: "dist"
+    src: "src/img/*.png",
+    dest: "dist/img"
   }
 };
 
