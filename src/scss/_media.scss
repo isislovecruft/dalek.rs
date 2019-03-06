@@ -59,14 +59,14 @@
       padding: 0.3rem;
 
       &__content {
-        transition: all 0.2s ease-in-out;
+        transition: all 0.2s linear;
         margin-top: 0.5rem;
         position: absolute;
         background: $mid-color;
         height: 17rem;
 
         &_hidden {
-          border: solid $dark-color 0.1rem;
+          border: 0;
           height: 0;
         }
       }

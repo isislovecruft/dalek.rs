@@ -36,7 +36,7 @@
   &__content {
     @extend %no-margin-padding;
     border: solid $dark-color 0.1rem;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s linear;
     list-style-type: none;
     margin-top: 0.5rem;
     overflow: hidden;
