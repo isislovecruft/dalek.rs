@@ -1,0 +1,35 @@
+.banner {
+  background: $secondary-color;
+  color: $text-color;
+  margin: 1rem;
+  min-height: calc(85vh - 2rem);
+  padding: 0.4rem;
+
+  &__inner {
+    @extend %flex-center;
+    border: double 0.25rem $text-color;
+    flex-flow: column;
+    min-height: calc(85vh - 2.4rem);
+  }
+
+  &__title {
+    padding: 1rem;
+    display: none;
+    font-weight: 700;
+  }
+
+  &__img {
+    width: 70%;
+    height: auto;
+  }
+
+  &__content {
+    padding: 0 1rem;
+    max-width: 52rem;
+    text-align: center;
+  }
+
+  &__p {
+    background: $secondary-color;
+  }
+}

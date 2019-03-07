@@ -1,0 +1,52 @@
+.site-section {
+  color: $text-color;
+  padding: 5vh 0 0;
+
+  &__content_about {
+    background: $secondary-color;
+    padding: 0.5rem;
+  }
+
+  &__title {
+    @extend %block;
+    @extend %no-margin;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: auto;
+    padding: 1rem 2rem;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    max-width: 32rem;
+
+    &:before,
+    &:after {
+      bottom: 30%;
+      color: $text-color;
+      position: absolute;
+    }
+
+    &:before {
+      content: ">>>";
+      left: 0.5rem;
+    }
+
+    &:after {
+      content: "<<<";
+      right: 0.5rem;
+    }
+
+    &_about {
+      width: 10rem;
+    }
+  }
+
+  &__p {
+    @extend %no-margin;
+    padding: 1rem;
+  }
+
+  &__header {
+    background: $secondary-color;
+  }
+}

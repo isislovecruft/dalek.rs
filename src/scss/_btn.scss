@@ -1,0 +1,63 @@
+.btn {
+  @extend %no-border;
+  @extend %block;
+  background: $mid-color;
+  box-shadow: $shadow;
+  color: $dark-color;
+  font-weight: 700;
+  margin: 2rem 0.5rem;
+  padding: 0.2rem;
+  position: relative;
+  text-decoration: none;
+
+  &:hover {
+    background: lighten($dark-color, 30%);
+    color: $text-color;
+
+    & > .btn__title {
+      color: $text-color;
+    }
+  }
+
+  &_heavy {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  &__title {
+    @extend %block;
+    color: $dark-color;
+    text-align: center;
+    text-decoration: none;
+    padding: 0 2rem;
+
+    &:before,
+    &:after {
+      position: absolute;
+      top: 0.2rem;
+    }
+
+    &:before {
+      left: 0.8rem;
+      content: "<";
+      padding: 0 1rem 0 0;
+    }
+
+    &:after {
+      content: ">";
+      right: 0.8rem;
+      padding: 0 0 0 1rem;
+    }
+
+    &_heavy {
+      &:before,
+      &:after {
+        top: 30%;
+      }
+    }
+  }
+
+  &-list {
+    padding: 0;
+  }
+}

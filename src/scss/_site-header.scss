@@ -1,0 +1,17 @@
+.site {
+  &-header {
+    @extend %no-margin;
+    @extend %flex;
+    background: $mid-color;
+    font-weight: 700;
+    justify-content: space-between;
+    padding: 0.1rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+
+  &-name {
+    padding: 0.3rem 1rem;
+  }
+}

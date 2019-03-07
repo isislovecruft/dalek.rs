@@ -4,3 +4,4 @@
 
 *.bak
 *.orig
+\node_modules

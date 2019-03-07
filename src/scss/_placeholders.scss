@@ -1,0 +1,31 @@
+%no-margin-padding {
+  margin: 0;
+  padding: 0;
+}
+
+%no-margin {
+  margin: 0;
+}
+
+%no-border {
+  border: 0;
+}
+
+%block {
+  display: block;
+}
+
+%flex {
+  display: flex;
+}
+
+%flex-center {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+%flex-column {
+  flex-flow: column;
+}

@@ -1,0 +1,10 @@
+body {
+  @extend %no-margin;
+  background: $primary-color;
+  font-family: $main-font;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}

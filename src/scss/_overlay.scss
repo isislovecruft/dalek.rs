@@ -1,0 +1,40 @@
+@keyframes reveal {
+  from {
+    height: 100vh;
+  }
+
+  to {
+    height: 0;
+  }
+}
+
+@keyframes reveal_line {
+  from {
+    width: 100vw;
+  }
+
+  to {
+    width: 0;
+  }
+}
+
+.overlay {
+  animation: 5s reveal;
+  background: $primary-color;
+  position: fixed;
+  width: 100vw;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+
+  &__inner {
+    position: absolute;
+    top: -2vh;
+    right: 0;
+    width: 0;
+    height: 2vh;
+    animation: 0.1s 50 reveal_line;
+    background: $primary-color;
+  }
+}
